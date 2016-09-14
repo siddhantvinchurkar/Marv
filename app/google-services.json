@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "861473952030",
+    "firebase_url": "https://element-b993b.firebaseio.com",
+    "project_id": "element-b993b",
+    "storage_bucket": "element-b993b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861473952030:android:77d892fd486d006f",
+        "android_client_info": {
+          "package_name": "com.marv.element"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861473952030-n9jq4ca8gbph9ahjtekvrds62a7ajugj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3iVlEIDQ_hjbVpbX9clvTvwREpnNRTa4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861473952030:android:aa1dbd7c3e47ac87",
+        "android_client_info": {
+          "package_name": "com.marv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861473952030-n9jq4ca8gbph9ahjtekvrds62a7ajugj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3iVlEIDQ_hjbVpbX9clvTvwREpnNRTa4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

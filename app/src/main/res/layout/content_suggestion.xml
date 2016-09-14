@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.marv.SuggestionActivity"
+    tools:showIn="@layout/activity_suggestion">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:textAlignment="center"
+        android:textColor="#33B5E5"
+        android:textAllCaps="false"
+        android:text="\nWhat's new, Marv?\n" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33B5E5"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="?android:colorBackground"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:id="@+id/wnew"
+            android:textColor="@color/Orange"
+            android:textAllCaps="false"
+            android:text="A lot of things are new. For starters, Marv is now officially on the cloud. What you're reading right now is fetched from Marv's personal Cloud Database." />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:textColor="#33B5E5"
+            android:textAllCaps="false"
+            android:text="\nWhat do you think about Marv?\nCan he be better?\n" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#33B5E5"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="?android:colorBackground"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/name"
+            android:textColor="@color/Orange"
+            android:hint="Name"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="?android:colorBackground"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:id="@+id/suggestion"
+            android:padding="10dp"
+            android:textColor="@color/Orange"
+            android:hint="Suggestion"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

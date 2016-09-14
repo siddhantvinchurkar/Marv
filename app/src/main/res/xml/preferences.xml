@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="General"
+        android:enabled="true">
+
+        <EditTextPreference
+            android:key="City"
+            android:title="Default Location"
+            android:dialogIcon="@drawable/location"
+            android:icon="@drawable/location"
+            android:summary="Set the default location to use in case GPS signal is unavailable">
+        </EditTextPreference>
+
+        <ListPreference
+            android:key="Image Resolution"
+            android:title="Image Quality"
+            android:dialogIcon="@drawable/image"
+            android:icon="@drawable/image"
+            android:defaultValue="2"
+            android:summary="Choose the quality of images to load"
+            android:entries="@array/image_qualities"
+            android:entryValues="@array/image_qualities_values"/>
+
+        <com.marv.SeekBarPreference
+            android:key="Background Image Delay"
+            android:title="Background Image Delay"
+            android:summary="Adjust how long each background image should stay"
+            android:dialogMessage="Adjust how long each background image should stay\n For obvious reasons, this value cannot be dropped below 5 seconds"
+            android:dialogIcon="@drawable/time"
+            android:icon="@drawable/time"
+            android:defaultValue="30"
+            android:text=" seconds"
+            android:max="60"/>
+
+        <Preference
+            android:title="What can Marv do?"
+            android:icon="@drawable/help"
+            android:summary="A complete list of things that Marv can do">
+        <intent android:targetPackage="com.marv"
+            android:targetClass="com.marv.Help"/>
+
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Personalisation"
+        android:enabled="true">
+
+        <EditTextPreference
+            android:key="Doctor Contact"
+            android:title="Doctor Contact"
+            android:dialogIcon="@drawable/ic_docplus"
+            android:icon="@drawable/ic_docplus"
+            android:summary="The contact number to use to place appointments when you're sick">
+        </EditTextPreference>
+
+        <CheckBoxPreference
+            android:key="Receive Push Notifications"
+            android:title="Receive Push Notifications"
+            android:icon="@drawable/ic_action_polymer"
+            android:defaultValue="true"
+            android:summary="If checked, you will periodically receive push notifications from Marv">
+        </CheckBoxPreference>
+
+        <CheckBoxPreference
+            android:key="Ask to Play Music"
+            android:title="Ask to Play Music"
+            android:icon="@drawable/ic_hardware_headset"
+            android:defaultValue="false"
+            android:summary="If checked, you will be asked if you want to listen to music when you plug your earphones in">
+        </CheckBoxPreference>
+
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:title="Emergency Protocol"
+            android:enabled="true">
+
+            <EditTextPreference
+                android:key="Emergency Contact"
+                android:title="Emergency Contact"
+                android:dialogIcon="@drawable/contact"
+                android:icon="@drawable/contact"
+                android:summary="The emergency contact number to use when the emergency protocol is activated">
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:key="Place Phone Call"
+                android:title="Place Phone Call"
+                android:icon="@drawable/call"
+                android:summary="If checked, Marv will place a phone call to your emergency contact when the emergency protocol is activated">
+            </CheckBoxPreference>
+
+            <EditTextPreference
+                android:key="Custom Message"
+                android:title="Custom Message"
+                android:dialogIcon="@drawable/message"
+                android:icon="@drawable/message"
+                android:summary="The custom message to use when the emergency protocol is activated - your current location information will be appended to this message">
+            </EditTextPreference>
+
+        </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="About Marv"
+        android:enabled="true">
+
+        <Preference
+            android:title="View License"
+            android:icon="@drawable/info"
+            android:summary="@string/licensed">
+            <intent android:targetPackage="com.marv"
+                android:targetClass="com.marv.LicenseActivity"/>
+        </Preference>
+
+        <Preference
+            android:title="Version"
+            android:key="version"
+            android:icon="@drawable/version"
+            android:summary="@string/app_version_name">
+            <intent android:targetPackage="com.marv"
+                android:targetClass="com.marv.EasterEgg"/>
+        </Preference>
+
+        <Preference
+            android:title="Suggestions?"
+            android:icon="@drawable/suggest"
+            android:summary="Help make Marv better by suggesting new features">
+            <intent android:targetPackage="com.marv"
+                android:targetClass="com.marv.SuggestionActivity"/>
+        </Preference>
+
+        <Preference
+            android:title="About Developer"
+            android:icon="@drawable/developer"
+            android:summary="Connect with Marv's creator">
+            <intent android:targetPackage="com.marv"
+                android:targetClass="com.marv.Me"/>
+        </Preference>
+
+        </PreferenceCategory>
+
+</PreferenceScreen>

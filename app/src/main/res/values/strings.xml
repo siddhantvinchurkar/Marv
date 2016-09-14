@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Marv</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_license">License</string>
+    <string name="licensed">"This app is licensed under the Apache License, Version 2.0 (the \"License\") you may not use this app or it's code except in compliance with the License"</string>
+    <string name="app_version_name">Marv 1.0 \"Argon\"</string>
+    <string name="title_activity_easter_egg">Marv 1.0 Argon</string>
+    <string name="dummy_button">Go Back</string>
+    <string name="dummy_content">MARV\nARGON</string>
+    <string name="title_activity_me">About Developer</string>
+    <string name="copyright_notice">\n\nMarv 1.0 \"Argon\"\n© Copyright 2016 Siddhant Vinchurkar\n</string>
+    <string name="title_activity_help">What can Marv do?</string>
+    <string name="define_string">You can ask Marv to define words. Suppose you want the definition of the word \'chaos\'. You can say: \"define chaos\"</string>
+    <string name="apps_string">Marv can open apps for you. All you have to do is say \"open &lt;app name&gt;\"</string>
+    <string name="weather_string">Marv will show you current weather details if you ask \"what\'s the weather like?\" or \"how\'s the weather outside?\"</string>
+    <string name="distance_string">Marv checks for obstacles like roadblocks, traffic, road repair work, etc. before telling you the distance between two places and the time it would take you to reach your destination if you happened to leave now. You can ask Marv \"how far is &lt;destination&gt; from &lt;origin&gt;\" to use this feature. Alternatively, you can also say \"what is the distance between &lt;origin&gt; and &lt;destination&gt;\"</string>
+    <string name="math_string">Marv is very good at math and can solve complex math problems within seconds. He thinks concepts like differentiation and integration are child\'s play</string>
+    <string name="movie_string">Marv can help you decide whether to watch a movie / TV show or not. Just ask \"should I watch &lt;movie / TV show name&gt;\"</string>
+    <string name="repeat_string">You can make Marv repeat after you. Just say \"say &lt;whatever you want Marv to say&gt;"</string>
+    <string name="emergency_string">The emergency protocol can come in handy in difficult times. It sends a text message to your emergency contact with your location information. To activate the emergency protocol simply say \"activate emergency protocol\" or shout \"help!\"</string>
+    <string name="ai_string">Marv uses a very powerful AI engine which is capable of answering many questions in real time. So fire away!</string>
+    <string name="translation_string">Marv understands several languages. He can translate words and phrases for you. To use this feature, say \"Translate &lt;word/phrase&gt; to &lt;language&gt;\"</string>
+    <string name="alarm_string">Marv can wake you up when you want him to. Say \"wake me up at &lt;time&gt;\" or \"set an alarm for &lt;time&gt;\" to use this feature</string>
+    <string name="remind_string">Marv can remind you to do things. Just say \"remind me to &lt;whatever you want Marv to remind you about&gt;\" to use this feature</string>
+    <string name="message_string">Marv can read out your messages for you. All you have to do is say \"read my messages\"</string>
+    <string name="title_activity_suggestion">Suggestions?</string>
+</resources>

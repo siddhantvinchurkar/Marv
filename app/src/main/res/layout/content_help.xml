@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.marv.Help"
+    tools:showIn="@layout/activity_help">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        card_view:cardCornerRadius="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@drawable/brain"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="top"/>
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="180dp"
+            android:textAlignment="center"
+            android:padding="7dp"
+            android:textSize="15dp"
+            android:text="In one line? Marv can do a lot of things; from opening apps to calculating complex math problems - Marv has got it all covered!"/>
+    </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_2"
+        android:layout_width="match_parent"
+        android:layout_height="285dp"
+        card_view:cardCornerRadius="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@drawable/define"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="top"/>
+
+        <TextView
+            android:id="@+id/title_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="165dp"
+            android:textColor="@color/Black"
+            android:padding="7dp"
+            android:textSize="30dp"
+            android:text="Define Words"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/Black"
+            android:layout_marginTop="214dp"/>
+
+        <TextView
+            android:id="@+id/info_text_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="215dp"
+            android:textAlignment="center"
+            android:padding="7dp"
+            android:textSize="15dp"
+            android:text="@string/define_string"/>
+    </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_3"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/apps"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Open Apps"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/apps_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_4"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/weather"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Weather Reports"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/weather_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_5"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/distance"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Distance / Travel Time"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/distance_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_6"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/math"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Math"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/math_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_7"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/movie"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Movies &amp; TV"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/movie_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_8"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/repeat"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Repeat after me!"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/repeat_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_9"
+            android:layout_width="match_parent"
+            android:layout_height="340dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/emergency"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Emergency Protocol"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/emergency_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_10"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/translate"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Translation"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/translation_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_11"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/alarm"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Alarms"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/alarm_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_12"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/remind"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Reminders"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/remind_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_13"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/chat"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Read Messages"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/message_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_14"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/music"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="Play Music"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="Marv intelligently chooses between your favourite music apps when you ask him to play music"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_15"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/ai"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="AI Engine"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/ai_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

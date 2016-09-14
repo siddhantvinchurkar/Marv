@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/aiback"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.marv.MainActivity"
+    android:id="@+id/layout"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.marv.Typewriter
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:id="@+id/myhtv"
+            android:textSize="25dp"
+            android:textColor="@color/Black"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textAlignment="center"
+                    android:hint="Override Speech Input"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    android:background="@color/White"
+                    android:textColor="@color/Black"
+                    android:layout_gravity="top|left"
+                    android:id="@+id/overrideSpeech"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.000125"
+                        android:textAlignment="center"
+                        android:text="Go!"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:background="@color/Blue"
+                        android:textColor="@color/White"
+                        android:layout_gravity="bottom|center"
+                        android:id="@+id/go"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:visibility="gone"
+                    android:id="@+id/poster"
+                    android:layout_gravity="center"/>
+
+                <VideoView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    android:id="@+id/video"
+                    android:layout_gravity="center"/>
+
+        <com.marv.Typewriter
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:id="@+id/htv"
+            android:textSize="25dp"
+            android:textColor="@color/Black" >
+
+            </com.marv.Typewriter>
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    android:id="@+id/progress"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:text="Google it instead"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="15dp"
+                    android:visibility="gone"
+                    android:background="@color/Blue"
+                    android:textColor="@color/White"
+                    android:layout_gravity="bottom|center"
+                    android:id="@+id/google"/>
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:text="Open Google Maps"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="15dp"
+                    android:visibility="gone"
+                    android:background="@color/Blue"
+                    android:textColor="@color/White"
+                    android:layout_gravity="bottom|center"
+                    android:id="@+id/map"/>
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:text="Full Screen"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="15dp"
+                    android:visibility="gone"
+                    android:background="@color/Blue"
+                    android:textColor="@color/White"
+                    android:layout_gravity="bottom|center"
+                    android:id="@+id/fullscreen"/>
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:text="Things Marv can do"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="15dp"
+                    android:visibility="gone"
+                    android:background="@color/Blue"
+                    android:textColor="@color/White"
+                    android:layout_gravity="bottom|center"
+                    android:id="@+id/help"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="60dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/flappy"
+                        android:src="@drawable/flappy"
+                        android:layout_weight="0.5"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:textAlignment="center"
+                        android:text="Yes"
+                        android:layout_weight="1"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:background="@color/Blue"
+                        android:textColor="@color/White"
+                        android:id="@+id/flappyyes"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:textAlignment="center"
+                        android:text="No"
+                        android:layout_weight="1"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:background="@color/Blue"
+                        android:textColor="@color/White"
+                        android:id="@+id/flappyno"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:textAlignment="center"
+                        android:text="Yes"
+                        android:layout_weight="1"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:background="@color/Blue"
+                        android:textColor="@color/White"
+                        android:id="@+id/docyes"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                    <Button
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:textAlignment="center"
+                        android:text="No"
+                        android:layout_weight="1"
+                        android:textAllCaps="true"
+                        android:visibility="gone"
+                        android:background="@color/Blue"
+                        android:textColor="@color/White"
+                        android:id="@+id/docno"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

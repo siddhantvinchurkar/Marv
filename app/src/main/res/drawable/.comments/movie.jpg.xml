@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comment version="3.0">
+  <caption>Movie, entertainment industry</caption>
+  <note>Movie and entertainment industry items, including a box of popcorn a movie clapboard and a strip of 35mm film</note>
+  <place/>
+  <categories>
+    <category value="movie"/>
+    <category value="entertainment"/>
+    <category value="industry"/>
+    <category value="film"/>
+    <category value="films"/>
+    <category value="art"/>
+    <category value="business"/>
+    <category value="movies"/>
+    <category value="clapboard"/>
+    <category value="slate"/>
+    <category value="movie clapboard"/>
+    <category value="black"/>
+    <category value="white background"/>
+    <category value="background"/>
+  </categories>
+</comment>
