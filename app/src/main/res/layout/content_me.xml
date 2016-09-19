@@ -89,6 +89,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:textAlignment="center"
+            android:background="?android:colorBackground"
+            android:src="@drawable/twitter"
+            android:id="@+id/twitter"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="?android:colorBackground"
             android:scaleType="fitCenter"
             android:textAlignment="center"

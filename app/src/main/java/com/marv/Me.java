@@ -24,7 +24,7 @@ import android.widget.ImageButton;
 
 public class Me extends AppCompatActivity {
 
-    ImageButton fb,gplus;
+    ImageButton fb, gplus, twitter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,12 @@ public class Me extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/u/0/+SiddhantVinchurkar")));
+            }
+        });
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/SidVinchurkar")));
             }
         });
     }
