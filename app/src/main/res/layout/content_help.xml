@@ -38,7 +38,7 @@
             android:textAlignment="center"
             android:padding="7dp"
             android:textSize="15dp"
-            android:text="In one line? Marv can do a lot of things; from opening apps to calculating complex math problems - Marv has got it all covered!"/>
+            android:text="@string/info_text"/>
     </android.support.v7.widget.CardView>
 
         <View

@@ -135,10 +135,18 @@
 
         <Preference
             android:title="About Developer"
-            android:icon="@drawable/developer"
+            android:icon="@drawable/siddhant"
             android:summary="Connect with Marv's creator">
             <intent android:targetPackage="com.marv"
                 android:targetClass="com.marv.Me"/>
+        </Preference>
+
+        <Preference
+            android:title="About Marv"
+            android:icon="@drawable/developer"
+            android:summary="Learn more about Legendary Awesomeness">
+            <intent android:targetPackage="com.marv"
+                android:targetClass="com.marv.AboutMarv"/>
         </Preference>
 
         </PreferenceCategory>

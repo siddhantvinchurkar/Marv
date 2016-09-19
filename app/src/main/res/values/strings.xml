@@ -8,8 +8,9 @@
     <string name="dummy_button">Go Back</string>
     <string name="dummy_content">MARV\nARGON</string>
     <string name="title_activity_me">About Developer</string>
-    <string name="copyright_notice">\n\nMarv 1.0 \"Argon\"\n© Copyright 2016 Siddhant Vinchurkar\n</string>
+    <string name="copyright_notice">\n\nMarv 1.0 \"Argon\"\n© Copyright 2016 Siddhant Vinchurkar\nAll rights reserved\n</string>
     <string name="title_activity_help">What can Marv do?</string>
+    <string name="info_text">In one line? Marv can do a lot of things; from opening apps to calculating complex math problems - Marv has got it all covered!</string>
     <string name="define_string">You can ask Marv to define words. Suppose you want the definition of the word \'chaos\'. You can say: \"define chaos\"</string>
     <string name="apps_string">Marv can open apps for you. All you have to do is say \"open &lt;app name&gt;\"</string>
     <string name="weather_string">Marv will show you current weather details if you ask \"what\'s the weather like?\" or \"how\'s the weather outside?\"</string>
@@ -24,4 +25,6 @@
     <string name="remind_string">Marv can remind you to do things. Just say \"remind me to &lt;whatever you want Marv to remind you about&gt;\" to use this feature</string>
     <string name="message_string">Marv can read out your messages for you. All you have to do is say \"read my messages\"</string>
     <string name="title_activity_suggestion">Suggestions?</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="title_activity_about_marv">About Marv</string>
 </resources>

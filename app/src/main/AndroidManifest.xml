@@ -138,8 +138,11 @@
             android:name=".EPStateService"
             android:enabled="true" />
 
-        <activity android:name=".EPDialog"></activity>
-
+        <activity android:name=".EPDialog" />
+        <activity
+            android:name=".AboutMarv"
+            android:label="@string/title_activity_about_marv"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

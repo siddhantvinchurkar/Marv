@@ -226,4 +226,6 @@ public class SettingsActivity extends PreferenceActivity {
         super.onResume();
     }
 
+
+
 }
