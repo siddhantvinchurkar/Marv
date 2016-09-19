@@ -1,11 +1,14 @@
 package com.marv;
 
+import android.*;
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -13,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -59,6 +64,7 @@ public class SplashActivity extends Activity{
         else{
             stopService(new Intent(SplashActivity.this,EPStateService.class));
         }
+
         class Time implements Runnable{
 
             @Override
@@ -118,7 +124,9 @@ public class SplashActivity extends Activity{
                 }
 
             }}
+
         new Thread(new Time()).start();
+
     }
 
     @Override
@@ -164,5 +172,4 @@ public class SplashActivity extends Activity{
         }
         return true;
     }
-
 }
