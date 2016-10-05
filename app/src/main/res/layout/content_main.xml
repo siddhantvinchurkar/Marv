@@ -96,6 +96,42 @@
                     android:id="@+id/poster"
                     android:layout_gravity="center"/>
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:visibility="gone"
+                    android:id="@+id/YTthumbnail"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:text="Watch"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="15dp"
+                    android:visibility="gone"
+                    android:drawableLeft="@android:drawable/ic_media_play"
+                    android:background="@color/Blue"
+                    android:textColor="@color/White"
+                    android:layout_gravity="bottom|center"
+                    android:id="@+id/YTwatch"/>
+
+                <Button
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:text="Watch Trailer"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="15dp"
+                    android:visibility="gone"
+                    android:drawableLeft="@android:drawable/ic_media_play"
+                    android:background="@color/Blue"
+                    android:textColor="@color/White"
+                    android:layout_gravity="bottom|center"
+                    android:id="@+id/trailer"/>
+
                 <VideoView
                     android:layout_width="match_parent"
                     android:layout_height="140dp"

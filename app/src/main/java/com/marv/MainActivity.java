@@ -108,12 +108,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     StringBuilder builder;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     boolean started = false,news=false;
-    Button google,map,fullscreen,help,flappyyes,flappyno,docyes,docno,go;
+    Button google,map,fullscreen,help,flappyyes,flappyno,docyes,docno,go,YTwatch,trailer;
     EditText overrideSpeech;
     double latitude, longitude;
-    ImageView poster,flappy;
+    ImageView poster,flappy,YTthumbnail;
     ScrollView scrollView;
-    Bitmap bmp;
+    Bitmap bmp,bmp2;
     ProgressBar progress;
     VideoView video;
     AccessWebServiceTask task;
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private Firebase firebase,firebase2;
     private FirebaseAnalytics mFirebaseAnalytics;
     private long updater=0;
-    String shodan_myip="", oSpeech="", greetContent="",greetSpeak="",pictureURL="",CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, sir!, What a marvellous day today!", afternoon = "Hi, sir!, What would you like to do this afternoon?", evening = "Hello, sir!, Any plans for tonight?", def = "Greetings of the day, sir! What would you like me to do?";
+    String YTquery="",thumbnailURL="",videoID="",YTAnswer="",YTIMDbAnswer="",shodan_myip="", oSpeech="", greetContent="",greetSpeak="",pictureURL="",CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, sir!, What a marvellous day today!", afternoon = "Hi, sir!, What would you like to do this afternoon?", evening = "Hello, sir!, Any plans for tonight?", def = "Greetings of the day, sir! What would you like me to do?";
 
     @Override
     public void onLocationChanged(Location location) {
@@ -183,7 +183,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         docyes=(Button)findViewById(R.id.docyes);
         docno=(Button)findViewById(R.id.docno);
         flappy=(ImageView)findViewById(R.id.flappy);
+        YTwatch=(Button)findViewById(R.id.YTwatch);
+        trailer=(Button)findViewById(R.id.trailer);
         poster = (ImageView) findViewById(R.id.poster);
+        YTthumbnail=(ImageView)findViewById(R.id.YTthumbnail);
         layout=(LinearLayout)findViewById(R.id.layout);
         video=(VideoView)findViewById(R.id.video);
         progress=(ProgressBar)findViewById(R.id.progress);
@@ -497,6 +500,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     google.setVisibility(View.GONE);
                     map.setVisibility(View.GONE);
                     poster.setVisibility(View.GONE);
+                    trailer.setVisibility(View.GONE);
+                    YTwatch.setVisibility(View.GONE);
+                    YTthumbnail.setVisibility(View.GONE);
                     video.setVisibility(View.GONE);
                     progress.setVisibility(View.GONE);
                     fullscreen.setVisibility(View.GONE);
@@ -508,6 +514,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     help.setVisibility(View.GONE);
                     poster.setImageDrawable(null);
                     poster.setScaleType(ImageView.ScaleType.FIT_XY);
+                    YTthumbnail.setImageDrawable(null);
+                    YTthumbnail.setScaleType(ImageView.ScaleType.FIT_XY);
                     htv.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
                     started = true;
                     speech = result.get(0);
@@ -520,7 +528,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         substring2 = speech.substring(speech.indexOf("ch"));
                         substring2 = substring2.substring(3);
                         speech = "imdb";
-                    } else if (speech.contains("say")) {
+                    }else if (speech.startsWith("YouTube")) {
+                        substring2 = speech.substring(speech.indexOf("be"));
+                        substring2 = substring2.substring(3);
+                        speech = "youtube";
+                    }
+                    else if (speech.contains("say")) {
                         substring2 = speech.substring(speech.indexOf(" "));
                         substring2 = substring2.substring(1);
                         speech = "say";
@@ -2156,33 +2169,48 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                 }, 3000);
                                                 IMDbquery = substring2;
                                                 new IMDbAsync().execute();
+                                                new YouTubeIMDb().execute();
                                                 break;
 
-                                            case "what should I watch":
-                                                speech = "What should I watch?";
-                                                myhtv.animateText(speech + "\nI've heard Deadpool is a good movie...");
-                                                tts.speak("I've heard Deadpool is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                            case "youtube":
+                                                speech = "YouTube " + substring2;
+                                                myhtv.animateText(speech + "\nHere's what I found on YouTube: ");
+                                                tts.speak("Here's what I found on YouTube", TextToSpeech.QUEUE_FLUSH, null);
                                                 scrollView.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                                     }
                                                 }, 3000);
-                                                IMDbquery = "Deadpool";
+                                                YTquery = substring2;
+                                                new YouTube().execute();
+                                                break;
+
+                                            case "what should I watch":
+                                                speech = "What should I watch?";
+                                                myhtv.animateText(speech + "\nI've heard Central Intelligence is a good movie...");
+                                                tts.speak("I've heard Central Intelligence is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                scrollView.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                                    }
+                                                }, 3000);
+                                                IMDbquery = "Central Intelligence";
                                                 new IMDbAsync().execute();
                                                 break;
 
                                             case "which movie should I watch":
                                                 speech = "Which movie should I watch?";
-                                                myhtv.animateText(speech + "\nI've heard Deadpool is a good movie...");
-                                                tts.speak("I've heard Deadpool is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                myhtv.animateText(speech + "\nI've heard Central Intelligence is a good movie...");
+                                                tts.speak("I've heard Central Intelligence is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
                                                 scrollView.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                                     }
                                                 }, 3000);
-                                                IMDbquery = "Deadpool";
+                                                IMDbquery = "Central Intelligence";
                                                 new IMDbAsync().execute();
                                                 break;
 
@@ -2949,6 +2977,206 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             htv.setCharacterDelay(20);
             htv.animateText(translateResult);
             tts.speak(br, TextToSpeech.QUEUE_FLUSH, null);
+        }
+
+    }
+
+    public class YouTubeIMDb extends AsyncTask<Void, Void, StringBuilder> {
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected StringBuilder doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+            System.out.println("In doinbackground");
+
+            builder = new StringBuilder();
+
+            HttpGet httpGet = new HttpGet("https://www.googleapis.com/youtube/v3/search?part=snippet&q="+URLEncoder.encode(IMDbquery+" trailer")+"&key=AIzaSyDiR7LFmxeI9uFCt0lBcaSF2mDLW_CZGc4");
+
+            HttpClient client = new DefaultHttpClient();
+
+            try {
+
+                HttpResponse response = client.execute(httpGet);
+
+                StatusLine statusLine = response.getStatusLine();
+
+                int statusCode = statusLine.getStatusCode();
+
+                System.out.println("before status");
+
+                if (statusCode == 200) {
+                    System.out.println("In status");
+
+                    HttpEntity entity = response.getEntity();
+
+                    InputStream content = entity.getContent();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        builder.append(line);
+                        System.out.println("in while");
+
+                    }
+                } else {
+                    Log.e(MainActivity.class.toString(), "Failed to download file");
+                }
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //For dialog we create a new thread
+
+            return builder;
+
+        }
+
+        @Override
+        protected void onPostExecute(StringBuilder result) {
+            // TODO Auto-generated method stub
+            super.onPostExecute(result);
+             YTIMDbAnswer= builder.toString();
+            try {
+                JSONObject jObj = new JSONObject(YTIMDbAnswer);
+                JSONArray jArr = jObj.getJSONArray("items");
+                JSONObject jsonObject = jArr.getJSONObject(0);
+                JSONObject idObj = jsonObject.getJSONObject("id");
+                videoID = idObj.getString("videoId");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            trailer.setVisibility(View.VISIBLE);
+            trailer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+videoID)));
+                }
+            });
+        }
+
+    }
+
+    public class YouTube extends AsyncTask<Void, Void, StringBuilder> {
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected StringBuilder doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+            System.out.println("In doinbackground");
+
+            builder = new StringBuilder();
+
+            HttpGet httpGet = new HttpGet("https://www.googleapis.com/youtube/v3/search?part=snippet&q="+URLEncoder.encode(YTquery)+"&key=AIzaSyDiR7LFmxeI9uFCt0lBcaSF2mDLW_CZGc4");
+
+            HttpClient client = new DefaultHttpClient();
+
+            try {
+
+                HttpResponse response = client.execute(httpGet);
+
+                StatusLine statusLine = response.getStatusLine();
+
+                int statusCode = statusLine.getStatusCode();
+
+                System.out.println("before status");
+
+                if (statusCode == 200) {
+                    System.out.println("In status");
+
+                    HttpEntity entity = response.getEntity();
+
+                    InputStream content = entity.getContent();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        builder.append(line);
+                        System.out.println("in while");
+
+                    }
+                } else {
+                    Log.e(MainActivity.class.toString(), "Failed to download file");
+                }
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //For dialog we create a new thread
+
+            return builder;
+
+        }
+
+        @Override
+        protected void onPostExecute(StringBuilder result) {
+            // TODO Auto-generated method stub
+            super.onPostExecute(result);
+            YTIMDbAnswer= builder.toString();
+            try {
+                JSONObject jObj = new JSONObject(YTIMDbAnswer);
+                JSONArray jArr = jObj.getJSONArray("items");
+                JSONObject jsonObject = jArr.getJSONObject(0);
+                JSONObject idObj = jsonObject.getJSONObject("id");
+                videoID = idObj.getString("videoId");
+                JSONObject snippet = jsonObject.getJSONObject("snippet");
+                String YTtitle = snippet.getString("title");
+                htv.setCharacterDelay(20);
+                htv.animateText(YTtitle);
+                JSONObject thumbnails = snippet.getJSONObject("thumbnails");
+                JSONObject thumbObj = thumbnails.getJSONObject("high");
+                thumbnailURL = thumbObj.getString("url");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            YTwatch.setVisibility(View.VISIBLE);
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    try {
+                        InputStream in = new URL(thumbnailURL).openStream();
+                        bmp2 = BitmapFactory.decodeStream(in);
+                    } catch (Exception e) {
+                        // log error
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void result) {
+                    if (bmp2 != null)
+                        YTthumbnail.setVisibility(View.VISIBLE);
+                    YTthumbnail.setScaleType(ImageView.ScaleType.CENTER);
+                    YTthumbnail.setImageBitmap(bmp2);
+                }
+
+            }.execute();
+            YTwatch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+videoID)));
+                }
+            });
         }
 
     }

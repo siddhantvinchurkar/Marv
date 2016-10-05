@@ -323,6 +323,52 @@
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_16"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            card_view:cardCornerRadius="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/youtube"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/title_16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="165dp"
+                android:textColor="@color/Black"
+                android:padding="7dp"
+                android:textSize="30dp"
+                android:text="YouTube Search"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/Black"
+                android:layout_marginTop="214dp"/>
+
+            <TextView
+                android:id="@+id/info_text_16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="215dp"
+                android:textAlignment="center"
+                android:padding="7dp"
+                android:textSize="15dp"
+                android:text="@string/youtube_string"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_8"
             android:layout_width="match_parent"
             android:layout_height="280dp"
