@@ -75,6 +75,8 @@ public class AboutMarv extends AppCompatActivity {
         });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(UniversalClass.cheatSettings)fab.setVisibility(View.VISIBLE);
+        else fab.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

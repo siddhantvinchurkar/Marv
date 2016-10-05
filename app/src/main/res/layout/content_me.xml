@@ -105,6 +105,16 @@
             android:src="@drawable/gplus"
             android:id="@+id/gplus"/>
 
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:colorBackground"
+            android:scaleType="fitCenter"
+            android:textAlignment="center"
+            android:src="@drawable/wordpress"
+            android:id="@+id/wordpress"/>
+
     </LinearLayout>
 
         <ImageView

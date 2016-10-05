@@ -24,7 +24,7 @@ import android.widget.ImageButton;
 
 public class Me extends AppCompatActivity {
 
-    ImageButton fb, gplus, twitter;
+    ImageButton fb, gplus, twitter, wordpress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class Me extends AppCompatActivity {
         });
         fb=(ImageButton)findViewById(R.id.fb);
         gplus=(ImageButton)findViewById(R.id.gplus);
+        twitter=(ImageButton)findViewById(R.id.twitter);
+        wordpress=(ImageButton)findViewById(R.id.wordpress);
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +59,12 @@ public class Me extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/SidVinchurkar")));
+            }
+        });
+        wordpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://siddhantvinchurkar.wordpress.com")));
             }
         });
     }
