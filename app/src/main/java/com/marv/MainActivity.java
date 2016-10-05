@@ -1783,9 +1783,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                 }
                                                 else{
                                                     Calendar c = Calendar.getInstance();
-                                                    int seconds = c.get(Calendar.SECOND);
+                                                    int iseconds = c.get(Calendar.SECOND);
                                                     int minutes = c.get(Calendar.MINUTE);
                                                     int hours = c.get(Calendar.HOUR_OF_DAY);
+                                                    String seconds="";
+                                                    if(iseconds<10)seconds="0"+iseconds;
+                                                    else seconds=""+iseconds;
                                                     String min="";
                                                     if(minutes==0)min="";
                                                     else min=String.valueOf(minutes);
@@ -1806,8 +1809,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                             int minutes = c.get(Calendar.MINUTE);
                                                             int hours = c.get(Calendar.HOUR_OF_DAY);
                                                             final String timeText;
-                                                            if(hours<12&&hours>=0) timeText="The time is "+hours+":"+minutes+":"+seconds+" AM";
-                                                            else timeText="It's "+(hours-12)+":"+minutes+":"+seconds+" PM";
+                                                            final String eseconds;
+                                                            if(seconds<10)eseconds="0"+seconds;
+                                                            else eseconds=""+seconds;
+                                                            if(hours<12&&hours>=0) timeText="The time is "+hours+":"+minutes+":"+eseconds+" AM";
+                                                            else timeText="It's "+(hours-12)+":"+minutes+":"+eseconds+" PM";
                                                             htv.setText(timeText);
                                                         }
                                                     };
@@ -1827,11 +1833,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                 }
                                                 else{
                                                     Calendar c = Calendar.getInstance();
-                                                    int seconds = c.get(Calendar.SECOND);
+                                                    int iseconds = c.get(Calendar.SECOND);
                                                     int minutes = c.get(Calendar.MINUTE);
                                                     int hours = c.get(Calendar.HOUR_OF_DAY);
                                                     String min="";
                                                     String timeText;
+                                                    String seconds="";
+                                                    if(iseconds<10)seconds="0"+iseconds;
+                                                    else seconds=""+iseconds;
                                                     if(minutes==0)min="";
                                                     else min=String.valueOf(minutes);
                                                     if(hours<12&&hours>=0) timeText="The time is "+hours+":"+minutes+":"+seconds+" AM";
@@ -1850,8 +1859,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                             int minutes = c.get(Calendar.MINUTE);
                                                             int hours = c.get(Calendar.HOUR_OF_DAY);
                                                             final String timeText;
-                                                            if(hours<12&&hours>=0) timeText="The time is "+hours+":"+minutes+":"+seconds+" AM";
-                                                            else timeText="It's "+(hours-12)+":"+minutes+":"+seconds+" PM";
+                                                            final String eseconds;
+                                                            if(seconds<10)eseconds="0"+seconds;
+                                                            else eseconds=""+seconds;
+                                                            if(hours<12&&hours>=0) timeText="The time is "+hours+":"+minutes+":"+eseconds+" AM";
+                                                            else timeText="It's "+(hours-12)+":"+minutes+":"+eseconds+" PM";
                                                             htv.setText(timeText);
                                                         }
                                                     };

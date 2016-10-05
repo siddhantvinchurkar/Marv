@@ -1,14 +1,11 @@
 package com.marv;
 
-import android.*;
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -16,10 +13,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 /* © Copyright 2016 Siddhant Vinchurkar
 
@@ -40,6 +40,8 @@ public class SplashActivity extends Activity{
     WifiManager wifiManager;
     Typewriter load;
     public int a=0;
+    private Firebase firebase;
+    boolean alive=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,18 @@ public class SplashActivity extends Activity{
         load=(Typewriter)findViewById(R.id.load);
         load.setCharacterDelay(20);
         load.animateText("\nLoading...");
+        Firebase.setAndroidContext(this);
+        firebase=new Firebase("https://marvelement.firebaseio.com/");
+        firebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                alive=(boolean)dataSnapshot.child("Alive").getValue();
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
         SharedPreferences abcd=getSharedPreferences("com.marv_preferences",MODE_PRIVATE);
         boolean notify=abcd.getBoolean("Receive Push Notifications",true);
         boolean earphones=abcd.getBoolean("Ask to Play Music",false);
@@ -72,7 +86,7 @@ public class SplashActivity extends Activity{
                 // TODO Auto-generated method stub
                 for (int i=0;i<=1;i++){
                     try{
-                        Thread.sleep(3000);
+                        Thread.sleep(5000);
                     }catch(InterruptedException e){
                         e.printStackTrace();
                     }
@@ -81,12 +95,26 @@ public class SplashActivity extends Activity{
                         @Override
                         public void run() {
                             // TODO Auto-generated method stub
-                            if(isNetworkAvailable()) {
+                            if(isNetworkAvailable()&&alive) {
                                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                                 if(!UniversalClass.cheatSettings) {
                                     startActivity(intent);
                                     finish();
                                 }
+                            }
+                            else if(!alive){
+                                AlertDialog.Builder ab=new AlertDialog.Builder(SplashActivity.this);
+                                ab.setMessage("Marv is currently experiencing some technical difficulties and will not be operational for sometime. Please check back later.");
+                                ab.setCancelable(false);
+                                ab.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        System.exit(0);
+                                    }
+                                });
+                                ab.create();
+                                ab.show();
                             }
                             else{
                                 load.setCharacterDelay(20);
