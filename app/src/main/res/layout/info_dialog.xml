@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/White"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#33B5E5"
+        android:textAllCaps="true"
+        android:text="About Marv" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/White"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#33B5E5"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/White"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textColor="@color/Orange"
+        android:textSize="13dp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:text="@string/marv"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/White"/>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="Learn More"
+        android:elevation="7dp"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:id="@+id/learnMore"
+        android:textAlignment="center"
+        android:textColor="@color/White"
+        android:background="@color/Blue"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/White"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/developer"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="© Copyright 2016 Siddhant Vinchurkar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:text="All rights reserved."/>
+
+</LinearLayout>

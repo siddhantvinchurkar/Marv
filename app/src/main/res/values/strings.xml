@@ -26,6 +26,7 @@
     <string name="message_string">Marv can read out your messages for you. All you have to do is say \"read my messages\"</string>
     <string name="youtube_string">Marv can search YouTube for you. To use this feature, say \"YouTube\" followed by your search query.</string>
     <string name="title_activity_suggestion">Suggestions?</string>
+    <string name="marv">Marv is your personal digital assistant; from opening apps to calculating complex math problems - Marv has got it all covered!</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_about_marv">About Marv</string>
 </resources>

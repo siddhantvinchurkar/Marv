@@ -24,11 +24,13 @@ import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -160,7 +162,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Hehe! That tickles! XD",Toast.LENGTH_SHORT).show();
+                //Display general information
+                LayoutInflater inflater= LayoutInflater.from(MainActivity.this);
+                final View elementInfo=inflater.inflate(R.layout.info_dialog, null);
+                AlertDialog.Builder ab=new AlertDialog.Builder(MainActivity.this);
+                ab.setView(elementInfo);
+                ab.setCancelable(true);
+                ab.create();
+                final AlertDialog show=ab.show();
+                Button learnMore=(Button)elementInfo.findViewById(R.id.learnMore);
+                learnMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("http://marv.tk/"); // missing 'http://' will cause the app to crash
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
             }
         });
         Firebase.setAndroidContext(this);
