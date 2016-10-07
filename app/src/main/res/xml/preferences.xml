@@ -50,6 +50,24 @@
         android:enabled="true">
 
         <EditTextPreference
+            android:key="Name"
+            android:title="Name"
+            android:dialogIcon="@drawable/ic_action_assignment_ind"
+            android:icon="@drawable/ic_action_assignment_ind"
+            android:summary="Decide what Marv should call you">
+        </EditTextPreference>
+
+        <ListPreference
+            android:key="Address Me As"
+            android:title="Address Me As"
+            android:dialogIcon="@drawable/ic_communication_forum"
+            android:icon="@drawable/ic_communication_forum"
+            android:defaultValue="1"
+            android:summary="Tell Marv how he should address you"
+            android:entries="@array/address_options"
+            android:entryValues="@array/address_options_values"/>
+
+        <EditTextPreference
             android:key="Doctor Contact"
             android:title="Doctor Contact"
             android:dialogIcon="@drawable/ic_docplus"

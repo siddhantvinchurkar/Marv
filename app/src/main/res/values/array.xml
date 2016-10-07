@@ -15,4 +15,14 @@
         <item>4</item>
     </string-array>
 
+    <string-array name="address_options">
+        <item>Sir</item>
+        <item>Ma\'am</item>
+    </string-array>
+
+    <string-array name="address_options_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
