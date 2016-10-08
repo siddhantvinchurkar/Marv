@@ -46,7 +46,8 @@
             android:padding="10dp"
             android:textColor="@color/White"
             android:background="@android:color/transparent"
-            android:hint="What is your name?"
+            android:hint="Name"
+            android:inputType="text"
             android:textColorHint="@color/White"/>
 
         <View
@@ -60,7 +61,8 @@
             android:padding="10dp"
             android:textColor="@color/White"
             android:background="@android:color/transparent"
-            android:hint="What is your email ID?"
+            android:hint="Email ID"
+            android:inputType="textEmailAddress"
             android:textColorHint="@color/White"/>
 
         <View

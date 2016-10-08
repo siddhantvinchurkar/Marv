@@ -165,13 +165,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 //Display general information
                 startActivity(new Intent(MainActivity.this,Introduction.class));
 //                LayoutInflater inflater= LayoutInflater.from(MainActivity.this);
-//                final View elementInfo=inflater.inflate(R.layout.info_dialog, null);
+//                final View marvInfo=inflater.inflate(R.layout.info_dialog, null);
 //                AlertDialog.Builder ab=new AlertDialog.Builder(MainActivity.this);
-//                ab.setView(elementInfo);
+//                ab.setView(marvInfo);
 //                ab.setCancelable(true);
 //                ab.create();
 //                final AlertDialog show=ab.show();
-//                Button learnMore=(Button)elementInfo.findViewById(R.id.learnMore);
+//                Button learnMore=(Button)marvInfo.findViewById(R.id.learnMore);
 //                learnMore.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
@@ -547,7 +547,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         substring2 = speech.substring(speech.indexOf("ch"));
                         substring2 = substring2.substring(3);
                         speech = "imdb";
-                    }else if (speech.startsWith("YouTube")) {
+                    }else if (speech.startsWith("YouTube")||speech.startsWith("Youtube")||speech.startsWith("youtube")) {
                         substring2 = speech.substring(speech.indexOf("be"));
                         substring2 = substring2.substring(3);
                         speech = "youtube";
@@ -2472,7 +2472,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             builder = new StringBuilder();
 
-            HttpGet httpGet = new HttpGet("http://api.wolframalpha.com/v2/query?input=" + wolfQuery + "&appid=HV857T-5GKYWQQ6HU");
+            HttpGet httpGet = new HttpGet("http://api.wolframalpha.com/v2/query?input=" + wolfQuery + "&appid="+getResources().getString(R.string.wolfram_alpha_appid));
 
             HttpClient client = new DefaultHttpClient();
 
@@ -2739,7 +2739,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             builder = new StringBuilder();
 
-            HttpGet httpGet = new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + URLEncoder.encode(origin) + "&destinations=" + URLEncoder.encode(destination) + "&mode=driving&sensor=false&key=AIzaSyDtHpO7JxqY_QXApLnCtRnvJhH_nTRwPLc");
+            HttpGet httpGet = new HttpGet("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + URLEncoder.encode(origin) + "&destinations=" + URLEncoder.encode(destination) + "&mode=driving&sensor=false&key="+getResources().getString(R.string.google_maps_distance_matrix_api_key));
 
             HttpClient client = new DefaultHttpClient();
 
@@ -2930,7 +2930,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             builder = new StringBuilder();
 
-            HttpGet httpGet = new HttpGet("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160313T114655Z.f52b94c074221a90.4a35915a7e41a7b362bd9f7b6497c9ec9209b099&text="+URLEncoder.encode(translate)+"&lang="+URLEncoder.encode(language)+"&format=plain");
+            HttpGet httpGet = new HttpGet("https://translate.yandex.net/api/v1.5/tr.json/translate?key="+getResources().getString(R.string.yandex_translate_api_key)+"&text="+URLEncoder.encode(translate)+"&lang="+URLEncoder.encode(language)+"&format=plain");
 
             HttpClient client = new DefaultHttpClient();
 
@@ -3016,7 +3016,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             builder = new StringBuilder();
 
-            HttpGet httpGet = new HttpGet("https://www.googleapis.com/youtube/v3/search?part=snippet&q="+URLEncoder.encode(IMDbquery+" trailer")+"&key=AIzaSyDiR7LFmxeI9uFCt0lBcaSF2mDLW_CZGc4");
+            HttpGet httpGet = new HttpGet("https://www.googleapis.com/youtube/v3/search?part=snippet&q="+URLEncoder.encode(IMDbquery+" trailer")+"&key="+getResources().getString(R.string.youtube_data_api_v3_key));
 
             HttpClient client = new DefaultHttpClient();
 
@@ -3102,7 +3102,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             builder = new StringBuilder();
 
-            HttpGet httpGet = new HttpGet("https://www.googleapis.com/youtube/v3/search?part=snippet&q="+URLEncoder.encode(YTquery)+"&key=AIzaSyDiR7LFmxeI9uFCt0lBcaSF2mDLW_CZGc4");
+            HttpGet httpGet = new HttpGet("https://www.googleapis.com/youtube/v3/search?part=snippet&q="+URLEncoder.encode(YTquery)+"&key="+getResources().getString(R.string.youtube_data_api_v3_key));
 
             HttpClient client = new DefaultHttpClient();
 
@@ -3346,7 +3346,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             builder = new StringBuilder();
 
-            HttpGet httpGet = new HttpGet("https://api.shodan.io/tools/myip?key=L4WcmB2MGvatYVI794NYf3xCawQqfwum");
+            HttpGet httpGet = new HttpGet("https://api.shodan.io/tools/myip?key="+getResources().getString(R.string.shodan_api_key));
 
             HttpClient client = new DefaultHttpClient();
 

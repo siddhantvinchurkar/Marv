@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,19 +32,24 @@ import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
    See the License for the specific language governing permissions and
    limitations under the License. */
 
-public class Introduction extends AppIntro implements ISlideBackgroundColorHolder, Introduction_Slide2.OnFragmentInteractionListener,Introduction_Slide3.OnFragmentInteractionListener {
+public class Introduction extends AppIntro implements ISlideBackgroundColorHolder, Introduction_Slide2.OnFragmentInteractionListener,Introduction_Slide3.OnFragmentInteractionListener, Introduction_Slide4.OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showStatusBar(false);
         showSkipButton(false);
+        setColorDoneText(getResources().getColor(R.color.Black));
         setFadeAnimation();
         Fragment fragment1 = new Introduction_Slide1();
         Fragment fragment2 = new Introduction_Slide2();
         Fragment fragment3 = new Introduction_Slide3();
+        Fragment fragment4 = new Introduction_Slide4();
+        Fragment fragment5 = new Introduction_Slide5();
         addSlide(fragment1);
         addSlide(fragment2);
         addSlide(fragment3);
+        addSlide(fragment4);
+        addSlide(fragment5);
     }
 
     @Override
@@ -63,9 +70,22 @@ public class Introduction extends AppIntro implements ISlideBackgroundColorHolde
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        // Do something when users tap on Done button.
-        startActivity(new Intent(Introduction.this,MainActivity.class));
-        finish();
+        // Do something when users tap on Done button
+        LayoutInflater inflater= LayoutInflater.from(Introduction.this);
+                final View setupcomplete=inflater.inflate(R.layout.setup_complete_dialog, null);
+                AlertDialog.Builder ab=new AlertDialog.Builder(Introduction.this);
+                ab.setView(setupcomplete);
+                ab.setCancelable(true);
+                ab.create();
+                final AlertDialog show=ab.show();
+                Button introcomplete=(Button)setupcomplete.findViewById(R.id.introcomplete);
+                introcomplete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Introduction.this,MainActivity.class));
+                        finish();
+                    }
+                });
     }
 
     @Override
@@ -83,6 +103,8 @@ public class Introduction extends AppIntro implements ISlideBackgroundColorHolde
             case "grantpermissions": Toast.makeText(getApplicationContext(), "This is Awesome!", Toast.LENGTH_SHORT).show();
                 break;
             case "submit": Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+                break;
+            case "introcando": Toast.makeText(getApplicationContext(), "This is Awesome!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

@@ -27,15 +27,25 @@
     <string name="youtube_string">Marv can search YouTube for you. To use this feature, say \"YouTube\" followed by your search query.</string>
     <string name="title_activity_suggestion">Suggestions?</string>
     <string name="marv">Marv is your personal digital assistant; from opening apps to calculating complex math problems - He has got it all covered!</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_about_marv">About Marv</string>
     <string name="title_welcome_marv">Hi There! I\'m Marv,\nyour Personal Digital Assistant.</string>
     <string name="title_activity_introduction">Introduction</string>
+    <string name="desc_intro_slide1">From opening apps to calculating complex math problems - Marv has got it all covered!</string>
     <string name="title_intro_slide2">Let\'s get you started.</string>
     <string name="desc_intro_slide2">For a seamless experience, make sure that you have granted Marv all the necessary permissions from the app settings.</string>
     <string name="title_intro_slide3">Tell Marv a bit about\nyourself.</string>
     <string name="desc_intro_slide3">Your email ID and password are required to sign you in. An account will be created for you automatically if you haven\'t already signed up. Feel free to skip this step.</string>
     <string name="radioq">How should Marv address you?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_intro_slide4">Marv can do a lot of things.\nThe only limit is your imagination.</string>
+    <string name="desc_intro_slide4">But here\'s a few things to begin with:</string>
+    <string name="title_intro_slide5">Marv is still under development.</string>
+    <string name="desc_intro_slide5">This is a test version and suggestions are welcome. You can make suggestions or report bugs from Marv\'s settings.</string>
+
+    <!-- API keys/App IDs -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="youtube_data_api_v3_key">AIzaSyBAs7wpfaCs-j8OQ9N0ZUvDe5e3Ah6xJMw</string>
+    <string name="wolfram_alpha_appid">HV857T-5GKYWQQ6HU</string>
+    <string name="google_maps_distance_matrix_api_key">AIzaSyDtHpO7JxqY_QXApLnCtRnvJhH_nTRwPLc</string>
+    <string name="yandex_translate_api_key">trnsl.1.1.20160313T114655Z.f52b94c074221a90.4a35915a7e41a7b362bd9f7b6497c9ec9209b099</string>
+    <string name="shodan_api_key">L4WcmB2MGvatYVI794NYf3xCawQqfwum</string>
 </resources>

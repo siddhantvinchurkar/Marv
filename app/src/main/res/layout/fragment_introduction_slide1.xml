@@ -49,7 +49,7 @@
         android:padding="20dp"
         android:textColor="@color/White"
         android:textSize="20sp"
-        android:text="@string/marv" />
+        android:text="@string/desc_intro_slide1" />
 
     </LinearLayout>
 
