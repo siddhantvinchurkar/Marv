@@ -1,16 +1,21 @@
 package com.marv;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
+
 
 
 /**
@@ -21,7 +26,19 @@ import android.widget.TextView;
  * Use the {@link Introduction_Slide4#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Introduction_Slide4 extends Fragment {
+public class Introduction_Slide4 extends Fragment implements ISlideBackgroundColorHolder {
+
+    @Override
+    public int getDefaultBackgroundColor() {
+        return Color.parseColor("#3F51B5");
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        FrameLayout slide4frag = (FrameLayout) getActivity().findViewById(R.id.slide4frag);
+        slide4frag.setBackgroundColor(backgroundColor);
+    }
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

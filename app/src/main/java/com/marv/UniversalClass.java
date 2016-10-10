@@ -16,9 +16,14 @@ package com.marv;
 public class UniversalClass {
 
     public static boolean backStack =false;
+    public static boolean introBackStack = false;
     public static boolean cheatSettings=false;
     public static boolean overrideSpeechInput=false;
     public static boolean internet=true;
     public static String whatsNew="Nothing much... You tell me!";
+    public static boolean isRooted = false;
+    public static String username = "empty";
+    public static String email = "empty";
+    public static String password = "empty";
 
 }

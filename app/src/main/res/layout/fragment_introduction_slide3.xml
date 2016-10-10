@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Green"
+    android:id="@+id/slide3frag"
+    android:background="@color/Red"
     tools:context="com.marv.Introduction_Slide3">
 
     <LinearLayout
@@ -38,6 +39,20 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="1dp"
+            android:background="@color/White">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Red"
+            android:id="@+id/border"
+            android:orientation="vertical">
 
         <EditText
             android:layout_width="match_parent"
@@ -80,6 +95,9 @@
             android:hint="Password"
             android:textColorHint="@color/White"/>
 
+        </LinearLayout>
+        </LinearLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="5dp"/>
@@ -90,14 +108,14 @@
             android:textAlignment="center"
             android:id="@+id/slide3desc"
             android:layout_gravity="bottom|center"
-            android:padding="18dp"
+            android:padding="20dp"
             android:textColor="@color/White"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:text="@string/desc_intro_slide3"/>
 
         <Button
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="@color/White"
             android:elevation="10dp"
             android:id="@+id/introsubmit"

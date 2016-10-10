@@ -1,9 +1,10 @@
 package com.marv;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,8 +12,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
+
+/* © Copyright 2016 Siddhant Vinchurkar
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License. */
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +40,21 @@ import android.widget.TextView;
  * Use the {@link Introduction_Slide3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Introduction_Slide3 extends Fragment {
+public class Introduction_Slide3 extends Fragment implements ISlideBackgroundColorHolder {
+
+    @Override
+    public int getDefaultBackgroundColor() {
+        return Color.parseColor("#F44336");
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        FrameLayout slide3frag = (FrameLayout) getActivity().findViewById(R.id.slide3frag);
+        LinearLayout border = (LinearLayout) getActivity().findViewById(R.id.border);
+        slide3frag.setBackgroundColor(backgroundColor);
+        border.setBackgroundColor(backgroundColor);
+    }
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -98,7 +130,10 @@ public class Introduction_Slide3 extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("submit="+introname.getText().toString()+"="+introemail.getText().toString()+"="+intropassword.getText().toString());
+                    UniversalClass.username = introname.getText().toString();
+                    UniversalClass.email = introemail.getText().toString();
+                    UniversalClass.password = intropassword.getText().toString();
+                    mListener.onFragmentInteraction("submit");
                 }
             }
         });

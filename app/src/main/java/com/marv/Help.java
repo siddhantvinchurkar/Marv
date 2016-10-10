@@ -32,7 +32,11 @@ public class Help extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(UniversalClass.backStack) {
+                if(UniversalClass.introBackStack){
+                    UniversalClass.introBackStack = false;
+                    onBackPressed();
+                }
+                else if(UniversalClass.backStack) {
                     UniversalClass.backStack =false;
                     startActivity(new Intent(Help.this, MainActivity.class));
                 }

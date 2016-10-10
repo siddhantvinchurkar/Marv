@@ -6,8 +6,10 @@
     <color name="Black">#000000</color>
     <color name="Blue">#00ABFF</color>
     <color name="White">#FFFFFF</color>
-    <color name="Red">#FF0000</color>
+    <color name="Red">#F44336</color>
     <color name="Orange">#EE8823</color>
-    <color name="Green">#008000</color>
+    <color name="Amber">#FFC107</color>
+    <color name="Green">#4CAF50</color>
+    <color name="DeepGrey">#2D2D2D</color>
     <color name="black_overlay">#66000000</color>
 </resources>

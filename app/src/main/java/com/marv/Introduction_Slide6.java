@@ -3,6 +3,7 @@ package com.marv;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -10,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -33,24 +33,23 @@ import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Introduction_Slide2.OnFragmentInteractionListener} interface
+ * {@link Introduction_Slide6.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Introduction_Slide2#newInstance} factory method to
+ * Use the {@link Introduction_Slide6#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Introduction_Slide2 extends Fragment implements ISlideBackgroundColorHolder {
+public class Introduction_Slide6 extends Fragment implements ISlideBackgroundColorHolder {
 
     @Override
     public int getDefaultBackgroundColor() {
-        return Color.parseColor("#00ABFF");
+        return Color.parseColor("#2D2D2D");
     }
 
     @Override
     public void setBackgroundColor(@ColorInt int backgroundColor) {
-        FrameLayout slide2frag = (FrameLayout) getActivity().findViewById(R.id.slide2frag);
-        slide2frag.setBackgroundColor(backgroundColor);
+        FrameLayout slide6frag = (FrameLayout) getActivity().findViewById(R.id.slide6frag);
+        slide6frag.setBackgroundColor(backgroundColor);
     }
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,7 +62,7 @@ public class Introduction_Slide2 extends Fragment implements ISlideBackgroundCol
 
     private OnFragmentInteractionListener mListener;
 
-    public Introduction_Slide2() {
+    public Introduction_Slide6() {
         // Required empty public constructor
     }
 
@@ -73,11 +72,11 @@ public class Introduction_Slide2 extends Fragment implements ISlideBackgroundCol
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Introduction_Slide2.
+     * @return A new instance of fragment Introduction_Slide6.
      */
     // TODO: Rename and change types and number of parameters
-    public static Introduction_Slide2 newInstance(String param1, String param2) {
-        Introduction_Slide2 fragment = new Introduction_Slide2();
+    public static Introduction_Slide6 newInstance(String param1, String param2) {
+        Introduction_Slide6 fragment = new Introduction_Slide6();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -98,44 +97,35 @@ public class Introduction_Slide2 extends Fragment implements ISlideBackgroundCol
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_introduction_slide2, container, false);
+        return inflater.inflate(R.layout.fragment_introduction_slide6, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(String id) {
+    public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(id);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TextView slide2title = (TextView) getActivity().findViewById(R.id.slide2title);
-        TextView slide2desc = (TextView) getActivity().findViewById(R.id.slide2desc);
+        TextView slide6title = (TextView) getActivity().findViewById(R.id.slide6title);
+        TextView slide6desc = (TextView) getActivity().findViewById(R.id.slide6desc);
         Typeface typeface = Typeface.createFromAsset(getResources().getAssets(),"Ubuntu-C.ttf");
-        slide2title.setTypeface(typeface);
-        slide2desc.setTypeface(typeface);
-        Button grantpermissions = (Button) getActivity().findViewById(R.id.grantpermissions);
-        grantpermissions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.onFragmentInteraction("grantpermissions");
-                }
-            }
-        });
+        slide6title.setTypeface(typeface);
+        slide6desc.setTypeface(typeface);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
@@ -156,6 +146,6 @@ public class Introduction_Slide2 extends Fragment implements ISlideBackgroundCol
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String id);
+        void onFragmentInteraction(Uri uri);
     }
 }

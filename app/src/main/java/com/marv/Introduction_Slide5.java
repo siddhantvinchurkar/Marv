@@ -1,17 +1,34 @@
 package com.marv;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
+
+/* © Copyright 2016 Siddhant Vinchurkar
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License. */
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +38,19 @@ import android.widget.TextView;
  * Use the {@link Introduction_Slide5#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Introduction_Slide5 extends Fragment {
+public class Introduction_Slide5 extends Fragment implements ISlideBackgroundColorHolder {
+
+    @Override
+    public int getDefaultBackgroundColor() {
+        return Color.parseColor("#FFFFFF");
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        FrameLayout slide5frag = (FrameLayout) getActivity().findViewById(R.id.slide5frag);
+        slide5frag.setBackgroundColor(backgroundColor);
+    }
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

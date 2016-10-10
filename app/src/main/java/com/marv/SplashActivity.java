@@ -20,6 +20,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.scottyab.rootbeer.RootBeer;
 
 /* © Copyright 2016 Siddhant Vinchurkar
 
@@ -47,11 +48,17 @@ public class SplashActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+
+        //Check for root access
+        RootBeer rootBeer = new RootBeer(getApplicationContext());
+        if(rootBeer.isRooted()){UniversalClass.isRooted=true;}
+
         wifiManager=(WifiManager)getSystemService(WIFI_SERVICE);
         handler=new Handler();
         load=(Typewriter)findViewById(R.id.load);
         load.setCharacterDelay(20);
         load.animateText("\nLoading...");
+        SharedPreferences sp = getSharedPreferences("com.marv_preferences", MODE_PRIVATE);
         Firebase.setAndroidContext(this);
         firebase=new Firebase("https://marvelement.firebaseio.com/");
         firebase.addValueEventListener(new ValueEventListener() {
@@ -61,7 +68,9 @@ public class SplashActivity extends Activity{
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
+                if(!isNetworkAvailable()) {
+                    alive = false;
+                }
             }
         });
         SharedPreferences abcd=getSharedPreferences("com.marv_preferences",MODE_PRIVATE);
@@ -153,7 +162,8 @@ public class SplashActivity extends Activity{
 
             }}
 
-        new Thread(new Time()).start();
+        if(!sp.getBoolean("first_launch", true))new Thread(new Time()).start();
+        else {startActivity(new Intent(SplashActivity.this, Introduction.class)); finish();}
 
     }
 

@@ -163,23 +163,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             @Override
             public void onClick(View v) {
                 //Display general information
-                startActivity(new Intent(MainActivity.this,Introduction.class));
-//                LayoutInflater inflater= LayoutInflater.from(MainActivity.this);
-//                final View marvInfo=inflater.inflate(R.layout.info_dialog, null);
-//                AlertDialog.Builder ab=new AlertDialog.Builder(MainActivity.this);
-//                ab.setView(marvInfo);
-//                ab.setCancelable(true);
-//                ab.create();
-//                final AlertDialog show=ab.show();
-//                Button learnMore=(Button)marvInfo.findViewById(R.id.learnMore);
-//                learnMore.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Uri uri = Uri.parse("http://marv.tk/"); // missing 'http://' will cause the app to crash
-//                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                        startActivity(intent);
-//                    }
-//                });
+                LayoutInflater inflater= LayoutInflater.from(MainActivity.this);
+                final View marvInfo=inflater.inflate(R.layout.info_dialog, null);
+                AlertDialog.Builder ab=new AlertDialog.Builder(MainActivity.this);
+                ab.setView(marvInfo);
+                ab.setCancelable(true);
+                ab.create();
+                final AlertDialog show=ab.show();
+                Button learnMore=(Button)marvInfo.findViewById(R.id.learnMore);
+                learnMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("http://marv.tk/"); // missing 'http://' will cause the app to crash
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
             }
         });
         Firebase.setAndroidContext(this);

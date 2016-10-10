@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/slide2frag"
     android:background="@color/Blue"
     tools:context="com.marv.Introduction_Slide2">
 
@@ -21,7 +22,7 @@
             android:id="@+id/slide2title"
             android:padding="10dp"
             android:textColor="@color/White"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:text="@string/title_intro_slide2" />
 
         <View
@@ -48,7 +49,7 @@
             android:layout_gravity="bottom|center"
             android:padding="20dp"
             android:textColor="@color/White"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:text="@string/desc_intro_slide2"/>
 
         <Button

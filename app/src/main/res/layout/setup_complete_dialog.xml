@@ -42,7 +42,7 @@
             android:textSize="20sp"
             android:text="Now go ahead and experience legendary awesomeness."/>
 
-        <Button
+        <TextView
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:background="@color/White"
@@ -52,6 +52,10 @@
             android:text="Awesome! Let's Go!"
             android:textColor="@color/Blue"
             android:layout_gravity="center"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
 
     </LinearLayout>
 

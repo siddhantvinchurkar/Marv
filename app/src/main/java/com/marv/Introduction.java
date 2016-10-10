@@ -1,10 +1,13 @@
 package com.marv;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,33 +35,27 @@ import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
    See the License for the specific language governing permissions and
    limitations under the License. */
 
-public class Introduction extends AppIntro implements ISlideBackgroundColorHolder, Introduction_Slide2.OnFragmentInteractionListener,Introduction_Slide3.OnFragmentInteractionListener, Introduction_Slide4.OnFragmentInteractionListener {
+public class Introduction extends AppIntro implements Introduction_Slide2.OnFragmentInteractionListener,Introduction_Slide3.OnFragmentInteractionListener, Introduction_Slide4.OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showStatusBar(false);
         showSkipButton(false);
         setColorDoneText(getResources().getColor(R.color.Black));
-        setFadeAnimation();
+        setColorTransitionsEnabled(true);
+        setImmersive(true);
         Fragment fragment1 = new Introduction_Slide1();
         Fragment fragment2 = new Introduction_Slide2();
         Fragment fragment3 = new Introduction_Slide3();
         Fragment fragment4 = new Introduction_Slide4();
         Fragment fragment5 = new Introduction_Slide5();
+        Fragment fragment6 = new Introduction_Slide6();
         addSlide(fragment1);
         addSlide(fragment2);
         addSlide(fragment3);
         addSlide(fragment4);
+        if(UniversalClass.isRooted)addSlide(fragment6);
         addSlide(fragment5);
-    }
-
-    @Override
-    public int getDefaultBackgroundColor() {
-        return Color.parseColor("#000000");
-    }
-
-    @Override
-    public void setBackgroundColor(@ColorInt int backgroundColor) {
     }
 
     @Override
@@ -78,10 +75,14 @@ public class Introduction extends AppIntro implements ISlideBackgroundColorHolde
                 ab.setCancelable(true);
                 ab.create();
                 final AlertDialog show=ab.show();
-                Button introcomplete=(Button)setupcomplete.findViewById(R.id.introcomplete);
+                TextView introcomplete=(TextView) setupcomplete.findViewById(R.id.introcomplete);
                 introcomplete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        SharedPreferences sp = getSharedPreferences("com.marv_preferences",MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sp.edit();
+                        edit.putBoolean("first_launch", false);
+                        edit.commit();
                         startActivity(new Intent(Introduction.this,MainActivity.class));
                         finish();
                     }
@@ -96,16 +97,33 @@ public class Introduction extends AppIntro implements ISlideBackgroundColorHolde
 
     @Override
     public void onFragmentInteraction(String id) {
-        String local="";
-        if(id.startsWith("submit="))local="submit";
-        else local=id;
-        switch (local){
-            case "grantpermissions": Toast.makeText(getApplicationContext(), "This is Awesome!", Toast.LENGTH_SHORT).show();
+        switch (id){
+            case "grantpermissions": Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
                 break;
-            case "submit": Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+            case "submit": onResume();
+                Toast.makeText(getApplicationContext(), "This is Awesome!", Toast.LENGTH_SHORT).show();
                 break;
-            case "introcando": Toast.makeText(getApplicationContext(), "This is Awesome!", Toast.LENGTH_SHORT).show();
+            case "introcando": startActivity(new Intent(Introduction.this,Help.class)); UniversalClass.introBackStack=true;
                 break;
         }
     }
+
+    @Override
+    protected void onResume() {
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.HONEYCOMB) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+        super.onResume();
+    }
+
 }
