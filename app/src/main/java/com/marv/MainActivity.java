@@ -47,6 +47,9 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.apache.http.HttpEntity;
@@ -122,8 +125,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     final Random r=new Random();
     private Firebase firebase,firebase2;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private InterstitialAd mInterstitialAd;
     private long updater=0;
     String YTquery="",thumbnailURL="",videoID="",YTAnswer="",YTIMDbAnswer="",shodan_myip="", oSpeech="", greetContent="",greetSpeak="",pictureURL="",CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, sir!, What a marvellous day today!", afternoon = "Hi, sir!, What would you like to do this afternoon?", evening = "Hello, sir!, Any plans for tonight?", def = "Greetings of the day, sir! What would you like me to do?";
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!oSpeech.isEmpty()) {
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+            ArrayList<String> abc = new ArrayList<>();
+            abc.add(oSpeech);
+            intent.putStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS,abc);
+            onActivityResult(REQ_CODE_SPEECH_INPUT, RESULT_OK, intent);
+            abc.clear();
+        }
+    }
 
     @Override
     public void onLocationChanged(Location location) {
@@ -181,6 +199,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 });
             }
         });
+        if(!UniversalClass.isRooted) {
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    requestNewInterstitial();
+                }
+            });
+            requestNewInterstitial();
+        }
         Firebase.setAndroidContext(this);
         firebase=new Firebase("https://marvelement.firebaseio.com/User Metadata/Number of users online");
         firebase2=new Firebase("https://marvelement.firebaseio.com/");
@@ -538,6 +567,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     started = true;
                     speech = result.get(0);
                     System.out.println(speech);
+                    oSpeech = speech;
                     if (speech.contains("define")) {
                         substring2 = speech.substring(speech.indexOf(" "));
                         substring2 = substring2.substring(1);
@@ -2233,6 +2263,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                 break;
 
                                             default:
+                                                if(!UniversalClass.isRooted) {
+                                                    new Handler().postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            if (mInterstitialAd.isLoaded()) {
+                                                                mInterstitialAd.show();
+                                                            }
+                                                        }
+                                                    }, 5500);
+                                                }
                                                 myhtv.animateText(speech + "\n\nHere's what my AI engine has to say about that:");
                                                 gurl = gurl + speech;
                                                 wolfQuery = URLEncoder.encode(speech);
@@ -3150,9 +3190,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void onPostExecute(StringBuilder result) {
             // TODO Auto-generated method stub
             super.onPostExecute(result);
-            YTIMDbAnswer= builder.toString();
+            YTAnswer= builder.toString();
             try {
-                JSONObject jObj = new JSONObject(YTIMDbAnswer);
+                JSONObject jObj = new JSONObject(YTAnswer);
                 JSONArray jArr = jObj.getJSONArray("items");
                 JSONObject jsonObject = jArr.getJSONObject(0);
                 JSONObject idObj = jsonObject.getJSONObject("id");
@@ -3402,6 +3442,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             tts.speak("Your IP address is " + shodan_myip + " as seen from the internet", TextToSpeech.QUEUE_FLUSH, null);
         }
 
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mInterstitialAd.loadAd(adRequest);
     }
 
 }

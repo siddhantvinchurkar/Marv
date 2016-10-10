@@ -44,6 +44,7 @@
 
     <!-- API keys/App IDs -->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="youtube_data_api_v3_key">AIzaSyBAs7wpfaCs-j8OQ9N0ZUvDe5e3Ah6xJMw</string>
     <string name="wolfram_alpha_appid">HV857T-5GKYWQQ6HU</string>
     <string name="google_maps_distance_matrix_api_key">AIzaSyDtHpO7JxqY_QXApLnCtRnvJhH_nTRwPLc</string>

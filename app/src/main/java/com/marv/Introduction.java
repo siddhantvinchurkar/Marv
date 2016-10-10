@@ -2,24 +2,26 @@ package com.marv;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /* © Copyright 2016 Siddhant Vinchurkar
 
@@ -36,9 +38,30 @@ import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
    limitations under the License. */
 
 public class Introduction extends AppIntro implements Introduction_Slide2.OnFragmentInteractionListener,Introduction_Slide3.OnFragmentInteractionListener, Introduction_Slide4.OnFragmentInteractionListener {
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private boolean signUp = false;
+    private boolean authenticate = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d("TAG", "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d("TAG", "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
         showStatusBar(false);
         showSkipButton(false);
         setColorDoneText(getResources().getColor(R.color.Black));
@@ -105,7 +128,66 @@ public class Introduction extends AppIntro implements Introduction_Slide2.OnFrag
                 startActivity(intent);
                 break;
             case "submit": onResume();
-                Toast.makeText(getApplicationContext(), "This is Awesome!", Toast.LENGTH_SHORT).show();
+                if(UniversalClass.username.isEmpty()||!UniversalClass.username.contains("@")||UniversalClass.password.isEmpty()){
+                    AlertDialog.Builder ab=new AlertDialog.Builder(Introduction.this);
+                    ab.setMessage("It is not necessary to complete this step. But if you wish to do so, please use a valid email ID and password.");
+                    ab.setCancelable(true);
+                    ab.create();
+                    ab.show();
+                    authenticate = false;
+                }
+                if(authenticate) {
+                    SharedPreferences sp = getSharedPreferences("com.marv_preferences", MODE_PRIVATE);
+                    SharedPreferences.Editor edit = sp.edit();
+                    edit.putString("Name", UniversalClass.username);
+                    edit.commit();
+                    if (UniversalClass.username.isEmpty()) {
+                        UniversalClass.username = "friend";
+                    }
+                    mAuth.createUserWithEmailAndPassword(UniversalClass.email, UniversalClass.password)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Log.d("TAG", "createUserWithEmail:onComplete:" + task.isSuccessful());
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Account created successfully!", Toast.LENGTH_SHORT).show();
+                                        signUp = true;
+                                    }
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    if (!task.isSuccessful()) {
+                                        signUp = false;
+                                    }
+
+                                    // ...
+                                }
+                            });
+                    if (!signUp) {
+                        mAuth.signInWithEmailAndPassword(UniversalClass.email, UniversalClass.password)
+                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        Log.d("TAG", "signInWithEmail:onComplete:" + task.isSuccessful());
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Welcome back!", Toast.LENGTH_SHORT).show();
+                                            signUp = false;
+                                        }
+                                        // If sign in fails, display a message to the user. If sign in succeeds
+                                        // the auth state listener will be notified and logic to handle the
+                                        // signed in user can be handled in the listener.
+                                        if (!task.isSuccessful()) {
+                                            signUp = true;
+                                            Log.w("TAG", "signInWithEmail:failed", task.getException());
+                                            Toast.makeText(getApplicationContext(), "Sign in Failed!", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        // ...
+                                    }
+                                });
+                    }
+                    authenticate = true;
+                }
                 break;
             case "introcando": startActivity(new Intent(Introduction.this,Help.class)); UniversalClass.introBackStack=true;
                 break;
@@ -124,6 +206,26 @@ public class Introduction extends AppIntro implements Introduction_Slide2.OnFrag
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
         super.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FirebaseAuth.getInstance().signOut();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
 }

@@ -23,6 +23,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 /* © Copyright 2016 Siddhant Vinchurkar
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,6 +68,14 @@ public class SettingsActivity extends PreferenceActivity {
             }
         });
         getListView().setBackground(getResources().getDrawable(R.drawable.centered_settings));
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        mAdView.setVisibility(View.GONE);
+        if(!UniversalClass.isRooted) {
+            MobileAds.initialize(getApplicationContext(), getResources().getString(R.string.banner_ad_unit_id));
+            mAdView.setVisibility(View.VISIBLE);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = SettingsActivity.this.getWindow();
 
