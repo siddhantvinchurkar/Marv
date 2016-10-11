@@ -53,6 +53,10 @@ public class SplashActivity extends Activity{
         RootBeer rootBeer = new RootBeer(getApplicationContext());
         if(rootBeer.isRooted()){UniversalClass.isRooted=true;}
 
+        SharedPreferences personalizer = getSharedPreferences("com.marv_preferences", MODE_PRIVATE);
+        if(personalizer.getString("Address Me As", "1").equals("1")) UniversalClass.ama1 = "sir"; else UniversalClass.ama1 = "ma'am";
+        if(!personalizer.getString("Name", "friend").isEmpty()) UniversalClass.name1 = personalizer.getString("Name", "friend"); else UniversalClass.name1 = "friend";
+
         wifiManager=(WifiManager)getSystemService(WIFI_SERVICE);
         handler=new Handler();
         load=(Typewriter)findViewById(R.id.load);
@@ -162,7 +166,7 @@ public class SplashActivity extends Activity{
 
             }}
 
-        if(!sp.getBoolean("first_launch", true))new Thread(new Time()).start();
+        if(!sp.getBoolean("First Launch", true))new Thread(new Time()).start();
         else {startActivity(new Intent(SplashActivity.this, Introduction.class)); finish();}
 
     }

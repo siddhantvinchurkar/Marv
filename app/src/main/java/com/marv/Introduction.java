@@ -1,5 +1,6 @@
 package com.marv;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -104,9 +105,9 @@ public class Introduction extends AppIntro implements Introduction_Slide2.OnFrag
                     public void onClick(View v) {
                         SharedPreferences sp = getSharedPreferences("com.marv_preferences",MODE_PRIVATE);
                         SharedPreferences.Editor edit = sp.edit();
-                        edit.putBoolean("first_launch", false);
+                        edit.putBoolean("First Launch", false);
                         edit.commit();
-                        startActivity(new Intent(Introduction.this,MainActivity.class));
+                        startActivity(new Intent(Introduction.this, SplashActivity.class));
                         finish();
                     }
                 });
@@ -131,6 +132,12 @@ public class Introduction extends AppIntro implements Introduction_Slide2.OnFrag
                 if(UniversalClass.username.isEmpty()||!UniversalClass.username.contains("@")||UniversalClass.password.isEmpty()){
                     AlertDialog.Builder ab=new AlertDialog.Builder(Introduction.this);
                     ab.setMessage("It is not necessary to complete this step. But if you wish to do so, please use a valid email ID and password.");
+                    ab.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Dismiss the dialog box
+                        }
+                    });
                     ab.setCancelable(true);
                     ab.create();
                     ab.show();
@@ -139,11 +146,11 @@ public class Introduction extends AppIntro implements Introduction_Slide2.OnFrag
                 if(authenticate) {
                     SharedPreferences sp = getSharedPreferences("com.marv_preferences", MODE_PRIVATE);
                     SharedPreferences.Editor edit = sp.edit();
-                    edit.putString("Name", UniversalClass.username);
-                    edit.commit();
                     if (UniversalClass.username.isEmpty()) {
                         UniversalClass.username = "friend";
                     }
+                    edit.putString("Name", UniversalClass.username);
+                    edit.commit();
                     mAuth.createUserWithEmailAndPassword(UniversalClass.email, UniversalClass.password)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override

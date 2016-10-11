@@ -52,6 +52,7 @@
         <EditTextPreference
             android:key="Name"
             android:title="Name"
+            android:defaultValue="friend"
             android:dialogIcon="@drawable/ic_action_assignment_ind"
             android:icon="@drawable/ic_action_assignment_ind"
             android:summary="Decide what Marv should call you">

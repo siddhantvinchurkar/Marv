@@ -43,11 +43,12 @@
     <string name="desc_intro_slide6">Awesome! I support root access. Enjoy an ad-free version of me just because.</string>
 
     <!-- API keys/App IDs -->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="banner_ad_unit_id">ca-app-pub-5111839041604013/9274327284</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-5111839041604013/1751060487</string>
     <string name="youtube_data_api_v3_key">AIzaSyBAs7wpfaCs-j8OQ9N0ZUvDe5e3Ah6xJMw</string>
     <string name="wolfram_alpha_appid">HV857T-5GKYWQQ6HU</string>
     <string name="google_maps_distance_matrix_api_key">AIzaSyDtHpO7JxqY_QXApLnCtRnvJhH_nTRwPLc</string>
     <string name="yandex_translate_api_key">trnsl.1.1.20160313T114655Z.f52b94c074221a90.4a35915a7e41a7b362bd9f7b6497c9ec9209b099</string>
     <string name="shodan_api_key">L4WcmB2MGvatYVI794NYf3xCawQqfwum</string>
+    <string name="openweathermap_appid">68ea3692e0f6a70bc937f6de759ba599</string>
 </resources>

@@ -25,5 +25,7 @@ public class UniversalClass {
     public static String username = "empty";
     public static String email = "empty";
     public static String password = "empty";
+    public static String name1 = "friend";
+    public static String ama1 = "sir";
 
 }

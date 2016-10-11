@@ -127,20 +127,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private FirebaseAnalytics mFirebaseAnalytics;
     private InterstitialAd mInterstitialAd;
     private long updater=0;
-    String YTquery="",thumbnailURL="",videoID="",YTAnswer="",YTIMDbAnswer="",shodan_myip="", oSpeech="", greetContent="",greetSpeak="",pictureURL="",CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, sir!, What a marvellous day today!", afternoon = "Hi, sir!, What would you like to do this afternoon?", evening = "Hello, sir!, Any plans for tonight?", def = "Greetings of the day, sir! What would you like me to do?";
+    String movieSuggestion1="Superbad",movieSuggestion2="Deadpool",movieSuggestion3="The Wolf of Wall Street",NAME=UniversalClass.name1,AMA=UniversalClass.ama1,YTquery="",thumbnailURL="",videoID="",YTAnswer="",YTIMDbAnswer="",shodan_myip="", oSpeech="", greetContent="",greetSpeak="",pictureURL="",CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, " + AMA + "!, What a marvellous day today!", afternoon = "Hi, " + AMA + "!, What would you like to do this afternoon?", evening = "Hello, " + AMA + "!, Any plans for tonight?", def = "Greetings of the day, " + AMA + "! What would you like me to do?";
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (!oSpeech.isEmpty()) {
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
-            ArrayList<String> abc = new ArrayList<>();
-            abc.add(oSpeech);
-            intent.putStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS,abc);
-            onActivityResult(REQ_CODE_SPEECH_INPUT, RESULT_OK, intent);
-            abc.clear();
-        }
     }
 
     @Override
@@ -199,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 });
             }
         });
+        SharedPreferences personalizer = getSharedPreferences("com.marv_preferences", MODE_PRIVATE);
+        if(personalizer.getString("Address Me As", "1").equals("1")) AMA = "sir"; else AMA = "ma'am";
+        if(!personalizer.getString("Name", "friend").isEmpty()) NAME = personalizer.getString("Name", "friend"); else NAME = "friend";
         if(!UniversalClass.isRooted) {
             mInterstitialAd = new InterstitialAd(this);
             mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
@@ -302,6 +296,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 greetContent=(String)dataSnapshot.child("GreetContent").getValue().toString();
                 greetSpeak=(String)dataSnapshot.child("GreetSpeak").getValue().toString();
                 pictureURL=(String)dataSnapshot.child("PictureURL").getValue().toString();
+                UniversalClass.whatsNew = (String)dataSnapshot.child("New").getValue().toString();
+                UniversalClass.whatsNew = UniversalClass.whatsNew.replaceAll("Marv", "me");
+                movieSuggestion1 = (String)dataSnapshot.child("MovieSuggestion1").getValue().toString();
+                movieSuggestion2 = (String)dataSnapshot.child("MovieSuggestion2").getValue().toString();
+                movieSuggestion3 = (String)dataSnapshot.child("MovieSuggestion3").getValue().toString();
                 if(((String)dataSnapshot.child("Greet").getValue().toString()).equals("Yes")){
                     news=true;
                 }
@@ -347,13 +346,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         if (hour >= 0 && hour < 12) {
             if (!started)
-                htv.animateText("Good morning, Siddhant! What a marvellous day today!");
+                htv.animateText("Good morning, " + NAME + "! What a marvellous day today!");
         } else if (hour >= 12 && hour < 17) {
             if (!started)
-                htv.animateText("Hello Siddhant! What would you like to do this afternoon?");
+                htv.animateText("Hello " + NAME + "! What would you like to do this afternoon?");
         } else if (hour >= 17 && hour <= 23) {
             if (!started)
-                htv.animateText("Hi Siddhant! Any plans for the evening?");
+                htv.animateText("Hi " + NAME + "! Any plans for the evening?");
         } else {
             if (!started)
                 tts.speak(def, TextToSpeech.QUEUE_FLUSH, null);
@@ -871,29 +870,29 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "what are your hobbies":
                                                 speech = "What are your hobbies?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("My hobbies include talking in a british accent, manipulating and performing calculations on data of all sorts and doing things Siddhant is too lazy to do.");
-                                                tts.speak("My hobbies include talking in a british accent, manipulating and performing calculations on data of all sorts, and doing things Siddhant is too lazy to do.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("My hobbies include talking in a british accent, manipulating and performing calculations on data of all sorts and doing things you are too lazy to do.");
+                                                tts.speak("My hobbies include talking in a british accent, manipulating and performing calculations on data of all sorts, and doing things you are too lazy to do.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "what do you do":
                                                 speech = "What do you do?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Sir, you built me. You should know that more than anyone else.");
-                                                tts.speak("Sir, , you built me., , You should know that more than anyone else.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("A lot.");
+                                                tts.speak("A lot.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "I want to eat you":
                                                 speech = "I want to eat you!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I am a software program. In case you didn't know, software is not a physical thing that you can eat, sir... Besides, you're not Bear Grylls.");
-                                                tts.speak("I am a software program., In case you didn't know, , software is not a physical thing that you can eat, sir..., , Besides, you're not Bear Grylls.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I am a software program. In case you didn't know, software is not a physical thing that you can eat, " + AMA + "... Besides, you're not Bear Grylls.");
+                                                tts.speak("I am a software program., In case you didn't know, , software is not a physical thing that you can eat, " + AMA + "..., , Besides, you're not Bear Grylls.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "can I eat you":
                                                 speech = "Can I eat you?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I am a software program. In case you didn't know, software is not a physical thing that you can eat, sir... Besides, you're not Bear Grylls.");
-                                                tts.speak("I am a software program., In case you didn't know, , software is not a physical thing that you can eat, sir..., , Besides, you're not Bear Grylls.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I am a software program. In case you didn't know, software is not a physical thing that you can eat, " + AMA + "... Besides, you're not Bear Grylls.");
+                                                tts.speak("I am a software program., In case you didn't know, , software is not a physical thing that you can eat, " + AMA + "..., , Besides, you're not Bear Grylls.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "you are awesome":
@@ -941,8 +940,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "die b****":
                                                 speech = "Die, bitch!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Where's your common sense, sir? I'm a machine. I'm not even alive...");
-                                                tts.speak("Where's your common sense, , sir? I'm a machine., , I'm not even alive...", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Where's your common sense, " + AMA + "? I'm a machine. I'm not even alive...");
+                                                tts.speak("Where's your common sense, , " + AMA + "? I'm a machine., , I'm not even alive...", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "who built you":
@@ -955,8 +954,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "what are you":
                                                 speech = "What are you?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I'm Marv. Siddhant's personal digital assistant.");
-                                                tts.speak("I'm Marv., Siddhant's personal, digital assistant.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I'm Marv. Your personal digital assistant.");
+                                                tts.speak("I'm Marv., Your personal, digital assistant.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "who are":
@@ -992,29 +991,29 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "good morning":
                                                 speech = "Good morning!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Good morning, sir!");
-                                                tts.speak("Good morning, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Good morning, " + AMA + "!");
+                                                tts.speak("Good morning, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "good afternoon":
                                                 speech = "Good afternoon!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Good afternoon, sir!");
-                                                tts.speak("Good afternoon, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Good afternoon, " + AMA + "!");
+                                                tts.speak("Good afternoon, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "good evening":
                                                 speech = "Good evening!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Good evening, sir!");
-                                                tts.speak("Good evening, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Good evening, " + AMA + "!");
+                                                tts.speak("Good evening, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "good night":
                                                 speech = "Good night!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Good night and sweet dreams, sir!");
-                                                tts.speak("Good night and sweet dreams, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Good night and sweet dreams, " + AMA + "!");
+                                                tts.speak("Good night and sweet dreams, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "how are you":
@@ -1115,30 +1114,32 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                     @Override
                                                     public void onClick(View v) {
                                                         flappyyes.setVisibility(View.GONE);flappyno.setVisibility(View.GONE);flappy.setVisibility(View.GONE);
-                                                        myhtv.animateText(speech + "\nWell... how about you watch Neerja? I've heard it's a good movie...");
-                                                        tts.speak("Well... how about you watch Neerja? I've heard it's a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                        myhtv.animateText(speech + "\nWell... how about you watch " + movieSuggestion1 + "? I've heard it's a good movie...");
+                                                        tts.speak("Well... how about you watch " + movieSuggestion1 + "? I've heard it's a good movie...", TextToSpeech.QUEUE_FLUSH, null);
                                                         scrollView.postDelayed(new Runnable() {
                                                             @Override
                                                             public void run() {
                                                                 scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                                             }
                                                         }, 3000);
-                                                        IMDbquery = "Neerja";
+                                                        IMDbquery = movieSuggestion1;
                                                         new IMDbAsync().execute();
+                                                        new YouTubeIMDb().execute();
                                                     }
                                                 });}
                                                 else{
                                                     speech = "No plans...";
-                                                    myhtv.animateText(speech+"No plans? that's sad... Why don't you watch The Wolf of Wall Street? Word is it's one heck of a movie...");
-                                                    tts.speak("No plans? that's sad... Why don't you watch The Wolf of Wall Street? Word is it's one heck of a movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                    myhtv.animateText(speech+"No plans? that's sad... Why don't you watch " + movieSuggestion2 + "? Word is it's one heck of a movie...");
+                                                    tts.speak("No plans? that's sad... Why don't you watch " + movieSuggestion2 + "? Word is it's one heck of a movie...", TextToSpeech.QUEUE_FLUSH, null);
                                                     scrollView.postDelayed(new Runnable() {
                                                         @Override
                                                         public void run() {
                                                             scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                                         }
                                                     }, 3000);
-                                                    IMDbquery = "The Wolf of Wall Street";
+                                                    IMDbquery = movieSuggestion2;
                                                     new IMDbAsync().execute();
+                                                    new YouTubeIMDb().execute();
                                                 }
                                                 break;
 
@@ -1159,64 +1160,64 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "hi Mars":
                                                 speech = "Hi Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hello sir! It's good to see you!");
-                                                tts.speak("Hello sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hello " + AMA + "! It's good to see you!");
+                                                tts.speak("Hello " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hi marv":
                                                 speech = "Hi Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hello sir! It's good to see you!");
-                                                tts.speak("Hello sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hello " + AMA + "! It's good to see you!");
+                                                tts.speak("Hello " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hi Mark":
                                                 speech = "Hi Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hello sir! It's good to see you!");
-                                                tts.speak("Hello sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hello " + AMA + "! It's good to see you!");
+                                                tts.speak("Hello " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hi mass":
                                                 speech = "Hi Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hello sir! It's good to see you!");
-                                                tts.speak("Hello sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hello " + AMA + "! It's good to see you!");
+                                                tts.speak("Hello " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hello Mars":
                                                 speech = "Hello Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hi sir! It's good to see you!");
-                                                tts.speak("Hi sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hi " + AMA + "! It's good to see you!");
+                                                tts.speak("Hi " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hello marv":
                                                 speech = "Hello Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hi sir! It's good to see you!");
-                                                tts.speak("Hi sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hi " + AMA + "! It's good to see you!");
+                                                tts.speak("Hi " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hello Mark":
                                                 speech = "Hello Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hi sir! It's good to see you!");
-                                                tts.speak("Hi sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hi " + AMA + "! It's good to see you!");
+                                                tts.speak("Hi " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "hello mass":
                                                 speech = "Hello Marv!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Hi sir! It's good to see you!");
-                                                tts.speak("Hi sir!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Hi " + AMA + "! It's good to see you!");
+                                                tts.speak("Hi " + AMA + "!, It's good to see you!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "bye":
                                                 speech = "Bye!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Goodbye, sir! Have a nice day!");
-                                                tts.speak("Goodbye, sir!, Have a nice day!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Goodbye, " + AMA + "! Have a nice day!");
+                                                tts.speak("Goodbye, " + AMA + "!, Have a nice day!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "I am bored":
@@ -1242,29 +1243,29 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "goodbye":
                                                 speech = "Goodbye!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Goodbye, sir! Have a nice day!");
-                                                tts.speak("Goodbye, sir!, Have a nice day!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Goodbye, " + AMA + "! Have a nice day!");
+                                                tts.speak("Goodbye, " + AMA + "!, Have a nice day!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "what is your name":
                                                 speech = "What is your name?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("My name is Marv. I'm Siddhant's personal digital assistant.");
-                                                tts.speak("My name is Marv., I'm Siddhant's personal, digital assistant.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("My name is Marv. I'm your personal digital assistant.");
+                                                tts.speak("My name is Marv., I'm your personal, digital assistant.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "what's your name":
                                                 speech = "What is your name?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("My name is Marv. I'm Siddhant's personal digital assistant.");
-                                                tts.speak("My name is Marv., I'm Siddhant's personal, digital assistant.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("My name is Marv. I'm your personal digital assistant.");
+                                                tts.speak("My name is Marv., I'm your personal, digital assistant.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "turn the flashlight on":
                                                 speech = "Turn the flashlight on!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Right away, sir!");
-                                                tts.speak("Right away, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Right away, " + AMA + "!");
+                                                tts.speak("Right away, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 if (getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                                                     Camera.Parameters p = cam.getParameters();
                                                     p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
@@ -1276,8 +1277,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "turn the flashlight off":
                                                 speech = "Turn the flashlight off!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("Of course, sir!");
-                                                tts.speak("Of course, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("Of course, " + AMA + "!");
+                                                tts.speak("Of course, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 cam.stopPreview();
                                                 cam.release();
                                                 break;
@@ -1780,8 +1781,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "who am I":
                                                 speech = "Who am I?";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("You're Siddhant Vinchurkar, my boss.");
-                                                tts.speak("You're Siddhant Vinchurkar, my boss.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("You're " + NAME + ", my boss.");
+                                                tts.speak("You're " + NAME + ", my boss.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "take a picture":
@@ -1996,29 +1997,29 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "tell me about yourself":
                                                 speech = "Tell me about yourself.";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
-                                                tts.speak("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
+                                                tts.speak("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "tell me a bit about yourself":
                                                 speech = "Tell me a bit about yourself.";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
-                                                tts.speak("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
+                                                tts.speak("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "tell me something about yourself":
                                                 speech = "Tell me something about yourself.";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
-                                                tts.speak("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
+                                                tts.speak("I am Marv, yours personal digital assistant. I'm based on an Artificial Intelligence code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "describe yourself":
                                                 speech = "Describe yourself.";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
-                                                tts.speak("I am Marv, Siddhant's personal digital assistant. I'm based on an Artificial Intelligence code developed by him. Siddhant was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence (AI) code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.");
+                                                tts.speak("I am Marv, your personal digital assistant. I'm based on an Artificial Intelligence code developed by Siddhant Vinchurkar. He was inspired by Jarvis from Iron Man; and so he created me. I personally idolize Jarvis because of his awesomeness.", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "what do you look like":
@@ -2156,8 +2157,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                             case "you suck":
                                                 speech = "You suck!";
                                                 myhtv.animateText(speech);
-                                                htv.animateText("You designed me. Technically you just insulted yourself, sir!");
-                                                tts.speak("You designed me., Technically you just insulted yourself, , sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                htv.animateText("You humans designed me. Technically you just insulted yourself, " + AMA + "!");
+                                                tts.speak("You humans designed me., Technically you just insulted yourself, , " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 break;
 
                                             case "why are firetrucks red":
@@ -2200,8 +2201,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                                     tts.speak(getMessage().substring(36), TextToSpeech.QUEUE_FLUSH, null);
                                                     check=false;
                                                 }else {
-                                                    htv.animateText("There's nothing important in your messages, sir!");
-                                                    tts.speak("There's nothing important in your messages, sir!", TextToSpeech.QUEUE_FLUSH, null);
+                                                    htv.animateText("There's nothing important in your messages, " + AMA + "!");
+                                                    tts.speak("There's nothing important in your messages, " + AMA + "!", TextToSpeech.QUEUE_FLUSH, null);
                                                 }
                                                 break;
 
@@ -2236,30 +2237,47 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                                             case "what should I watch":
                                                 speech = "What should I watch?";
-                                                myhtv.animateText(speech + "\nI've heard Central Intelligence is a good movie...");
-                                                tts.speak("I've heard Central Intelligence is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                myhtv.animateText(speech + "\nI've heard " + movieSuggestion3 + " is a good movie...");
+                                                tts.speak("I've heard " + movieSuggestion3 + " is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
                                                 scrollView.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                                     }
                                                 }, 3000);
-                                                IMDbquery = "Central Intelligence";
+                                                IMDbquery = movieSuggestion3;
                                                 new IMDbAsync().execute();
+                                                new YouTubeIMDb().execute();
+                                                break;
+
+                                            case "what movie should I watch":
+                                                speech = "What should I watch?";
+                                                myhtv.animateText(speech + "\nI've heard " + movieSuggestion3 + " is a good movie...");
+                                                tts.speak("I've heard " + movieSuggestion3 + " is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                scrollView.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                                    }
+                                                }, 3000);
+                                                IMDbquery = movieSuggestion3;
+                                                new IMDbAsync().execute();
+                                                new YouTubeIMDb().execute();
                                                 break;
 
                                             case "which movie should I watch":
                                                 speech = "Which movie should I watch?";
-                                                myhtv.animateText(speech + "\nI've heard Central Intelligence is a good movie...");
-                                                tts.speak("I've heard Central Intelligence is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
+                                                myhtv.animateText(speech + "\nI've heard " + movieSuggestion3 + " is a good movie...");
+                                                tts.speak("I've heard " + movieSuggestion3 + " is a good movie...", TextToSpeech.QUEUE_FLUSH, null);
                                                 scrollView.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                                     }
                                                 }, 3000);
-                                                IMDbquery = "Central Intelligence";
+                                                IMDbquery = movieSuggestion3;
                                                 new IMDbAsync().execute();
+                                                new YouTubeIMDb().execute();
                                                 break;
 
                                             default:
