@@ -129,7 +129,7 @@ public class Introduction extends AppIntro implements Introduction_Slide2.OnFrag
                 startActivity(intent);
                 break;
             case "submit": onResume();
-                if(UniversalClass.username.isEmpty()||!UniversalClass.username.contains("@")||UniversalClass.password.isEmpty()){
+                if(UniversalClass.username.isEmpty()||UniversalClass.password.isEmpty()){
                     AlertDialog.Builder ab=new AlertDialog.Builder(Introduction.this);
                     ab.setMessage("It is not necessary to complete this step. But if you wish to do so, please use a valid email ID and password.");
                     ab.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {

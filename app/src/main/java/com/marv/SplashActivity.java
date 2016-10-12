@@ -69,6 +69,10 @@ public class SplashActivity extends Activity{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 alive=(boolean)dataSnapshot.child("Alive").getValue();
+                UniversalClass.GC = (String)dataSnapshot.child("GreetContent").getValue().toString();
+                UniversalClass.GS = (String)dataSnapshot.child("GreetSpeak").getValue().toString();
+                UniversalClass.PU = (String)dataSnapshot.child("PictureURL").getValue().toString();
+                if(((String)dataSnapshot.child("Greet").getValue().toString()).equals("Yes"))UniversalClass.NEWS = true;
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {

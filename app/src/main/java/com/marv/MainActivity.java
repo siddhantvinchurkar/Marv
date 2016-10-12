@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     LinearLayout layout;
     StringBuilder builder;
     private final int REQ_CODE_SPEECH_INPUT = 100;
-    boolean started = false,news=false;
+    boolean started = false,news=UniversalClass.NEWS;
     Button google,map,fullscreen,help,flappyyes,flappyno,docyes,docno,go,YTwatch,trailer;
     EditText overrideSpeech;
     double latitude, longitude;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private FirebaseAnalytics mFirebaseAnalytics;
     private InterstitialAd mInterstitialAd;
     private long updater=0;
-    String movieSuggestion1="Superbad",movieSuggestion2="Deadpool",movieSuggestion3="The Wolf of Wall Street",NAME=UniversalClass.name1,AMA=UniversalClass.ama1,YTquery="",thumbnailURL="",videoID="",YTAnswer="",YTIMDbAnswer="",shodan_myip="", oSpeech="", greetContent="",greetSpeak="",pictureURL="",CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, " + AMA + "!, What a marvellous day today!", afternoon = "Hi, " + AMA + "!, What would you like to do this afternoon?", evening = "Hello, " + AMA + "!, Any plans for tonight?", def = "Greetings of the day, " + AMA + "! What would you like me to do?";
+    String movieSuggestion1="Superbad",movieSuggestion2="Deadpool",movieSuggestion3="The Wolf of Wall Street",NAME=UniversalClass.name1,AMA=UniversalClass.ama1,YTquery="",thumbnailURL="",videoID="",YTAnswer="",YTIMDbAnswer="",shodan_myip="", oSpeech="", greetContent=UniversalClass.GC,greetSpeak=UniversalClass.GS,pictureURL=UniversalClass.PU,CNJokesAnswer="",CNJoke="",phoneNumber="",name="",minutes="0",hours="0",br="",translateCode="0",translateResult="¯\\_(ツ)_/¯",TranslateAnswer="",language="Spanish",translate="Hello, World!",lF="/all",loremFlickr="http://loremflickr.com/640/480/",maps = "http://maps.google.co.in/maps?q=",temp=" ",distance=" ",travelTime=" ",destination = " ", origin = " ", movieIMDbRating = " ", moviePoster = " ", movieAwards = " ", movieCountry = " ", movieLanguage = " ", moviePlot = " ", movieActors = " ", movieWriter = " ", movieDirector = " ", movieGenre = " ", movieRuntime = " ", movieReleased = " ", movieRated = " ", movieYear = " ", movieTitle = " ", IMDbAnswer = " ", IMDbquery = "empty", wolfQuery = "empty", title = " ", desc = "¯\\_(ツ)_/¯", WolfAnswer = " ", mylocation = "unknown", weatherstring = " ", substring2 = " ", gurl = "https://www.google.co.in/#q=", speech = " ", morning = "Good morning, " + AMA + "!, What a marvellous day today!", afternoon = "Hi, " + AMA + "!, What would you like to do this afternoon?", evening = "Hello, " + AMA + "!, Any plans for tonight?", def = "Greetings of the day, " + AMA + "! What would you like me to do?";
 
     @Override
     public void onBackPressed() {
@@ -316,6 +316,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             public void run() {
                 if(news){
                     if(!started)
+                        //Display Trending Greeting
                         tts.speak(greetSpeak,TextToSpeech.QUEUE_FLUSH,null);
                     myhtv.setCharacterDelay(20);
                     myhtv.animateText(greetContent);

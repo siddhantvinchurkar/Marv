@@ -22,10 +22,14 @@ public class UniversalClass {
     public static boolean internet=true;
     public static String whatsNew="Nothing much... You tell me!";
     public static boolean isRooted = false;
+    public static boolean NEWS = false;
     public static String username = "empty";
     public static String email = "empty";
     public static String password = "empty";
     public static String name1 = "friend";
     public static String ama1 = "sir";
+    public static String GC = "";
+    public static String GS = "";
+    public static String PU = "";
 
 }
